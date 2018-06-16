@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.emoticoncreater.R;
@@ -20,7 +21,6 @@ import com.android.emoticoncreater.utils.OneEmoticonHelper;
 import com.android.emoticoncreater.utils.SDCardUtils;
 import com.android.emoticoncreater.utils.ThreadPoolUtil;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
-import com.android.emoticoncreater.widget.imageloader.SquareImageView;
 
 import java.io.File;
 
@@ -28,7 +28,7 @@ public class OneEmoticonEditActivity extends BaseActivity {
 
     private static final String KEY_ONE_EMOTICON = "key_one_emoticon";
 
-    private SquareImageView ivPicture;
+    private ImageView ivPicture;
     private AppCompatEditText etTitle;
 
     private PictureBean mPicture;
@@ -69,7 +69,7 @@ public class OneEmoticonEditActivity extends BaseActivity {
         setToolbarTitle("编辑表情");
         setToolbarSubTitle("编写表情的文字");
 
-        ivPicture = (SquareImageView) findViewById(R.id.iv_picture);
+        ivPicture = (ImageView) findViewById(R.id.iv_picture);
         etTitle = (AppCompatEditText) findViewById(R.id.et_title);
 
         etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {

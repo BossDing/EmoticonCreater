@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 180611
-        versionName "1.5"
+        versionName "1.5.1 beta1"
     }
     buildTypes {
         debug {

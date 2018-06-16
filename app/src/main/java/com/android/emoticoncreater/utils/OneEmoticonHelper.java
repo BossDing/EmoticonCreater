@@ -21,14 +21,23 @@ public class OneEmoticonHelper {
 
     private static final int padding = 20;//内边距
     private static final int pictureWidth = 300;//图片宽度
-    private static final int pictureHeight = 300;//图片高度
     private static final int textSize = 30;//字体大小
     private static final int backgroundColor = 0xffffffff;
     private static final int textColor = 0xff010101;
 
     public static File create(Resources resources, final PictureBean emoticon, final String savePath) {
         final String text = emoticon.getTitle();
-        final int textPaddingTop = TextUtils.isEmpty(emoticon.getFilePath()) ? 0 : padding;
+        final int resourceId = emoticon.getResourceId();
+        final String filePath = emoticon.getFilePath();
+        final Bitmap bitmap;
+        if (!TextUtils.isEmpty(filePath)) {
+            bitmap = getBitmapByFilePath(filePath);
+        } else {
+            bitmap = getBitmapByResourcesId(resources, resourceId);
+        }
+
+        final int pictureWidth = bitmap.getWidth();
+        final int pictureHeight = bitmap.getHeight();
 
         final Paint paint = new Paint();
         paint.reset();
@@ -38,42 +47,44 @@ public class OneEmoticonHelper {
 
         final Rect textRect = new Rect();
         paint.getTextBounds(text, 0, text.length(), textRect);
-        final int maxTextWidth = pictureWidth;
         final int textWidth = textRect.right;
         final int textHeight = TextUtils.isEmpty(text) ? 0
-                : (textWidth <= maxTextWidth ? textSize : 2 * textSize + padding / 2);
-
-        final int totalWidth = padding + pictureWidth + padding;
-        final int totalHeight = padding + pictureHeight + textPaddingTop + textHeight + padding;
+                : (textWidth <= pictureWidth ? textSize : 2 * textSize + padding / 2);
 
         paint.reset();
         paint.setColor(backgroundColor);
         paint.setStyle(Paint.Style.FILL);
 
-        final Bitmap picture = Bitmap.createBitmap(totalWidth, totalHeight, Bitmap.Config.ARGB_8888);
-        final Rect background = new Rect(0, 0, totalWidth, totalHeight);
-        final Canvas canvas = new Canvas(picture);
-        canvas.drawRect(background, paint);
+        final int totalWidth = padding + bitmap.getWidth() + padding;
+        final int totalHeight = padding + bitmap.getHeight() + padding + textHeight + padding;
 
-        drawBitmap(resources, canvas, emoticon, padding);
+        final Bitmap background = Bitmap.createBitmap(totalWidth, totalHeight, Bitmap.Config.ARGB_8888);
+        final Rect backgroundRect = new Rect(0, 0, totalWidth, totalHeight);
+        final Canvas canvas = new Canvas(background);
+        canvas.drawRect(backgroundRect, paint);
+
+        final Rect pictureRect = new Rect(0, 0, pictureWidth, pictureHeight);
+        final RectF dst = new RectF(padding, padding, pictureWidth + padding, padding + pictureHeight);
+        canvas.drawBitmap(bitmap, pictureRect, dst, null);
+        bitmap.recycle();
 
         if (textHeight > 0) {
-            if (textWidth <= maxTextWidth) {
-                drawText(canvas, paint, text, padding + pictureHeight + textPaddingTop);
+            if (textWidth <= pictureWidth) {
+                drawText(canvas, paint, text, padding + pictureHeight + padding);
             } else {
-                final float line = textWidth / (float) maxTextWidth;
+                final float line = textWidth / (float) pictureWidth;
                 final int count = (int) (text.length() / line);
                 final String text1 = text.substring(0, count);
                 final String text2 = text.substring(count, text.length());
 
-                drawText(canvas, paint, text1, padding + pictureHeight + textPaddingTop);
-                drawText(canvas, paint, text2, padding + pictureHeight + textPaddingTop + textSize + padding / 2);
+                drawText(canvas, paint, text1, padding + pictureHeight + padding);
+                drawText(canvas, paint, text2, padding + pictureHeight + padding + textSize + padding / 2);
             }
         }
 
         final String imageName = System.currentTimeMillis() + ".jpg";
-        final File newFile = ImageUtils.saveBitmapToJpg(picture, savePath, imageName);
-        picture.recycle();
+        final File newFile = ImageUtils.saveBitmapToJpg(background, savePath, imageName);
+        background.recycle();
 
         return newFile;
     }
@@ -93,22 +104,6 @@ public class OneEmoticonHelper {
         canvas.drawText(text, textLeft, textTop, paint);
     }
 
-    private static void drawBitmap(Resources resources, Canvas canvas, PictureBean picture, int top) {
-        final int resourceId = picture.getResourceId();
-        final String filePath = picture.getFilePath();
-        final Bitmap bitmap;
-        if (!TextUtils.isEmpty(filePath)) {
-            bitmap = getBitmapByFilePath(filePath);
-        } else {
-            bitmap = getBitmapByResourcesId(resources, resourceId);
-        }
-
-        final Rect pictureRect = new Rect(0, 0, pictureWidth, pictureHeight);
-        final RectF dst = new RectF(padding, top, pictureWidth + padding, top + pictureHeight);
-        canvas.drawBitmap(bitmap, pictureRect, dst, null);
-        bitmap.recycle();
-    }
-
     private static Bitmap getBitmapByFilePath(String filePath) {
         final Bitmap bitmap = BitmapFactory.decodeFile(filePath);
         return setScale(bitmap);
@@ -123,12 +118,11 @@ public class OneEmoticonHelper {
         final int bitmapWidth = bitmap.getWidth();
         final int bitmapHeight = bitmap.getHeight();
 
-        if (bitmapWidth != pictureWidth || bitmapHeight != pictureHeight) {
-            float scaleWidth = ((float) pictureWidth) / bitmapWidth;
-            float scaleHeight = ((float) pictureHeight) / bitmapHeight;
+        if (bitmapWidth != pictureWidth) {
+            float scale = ((float) pictureWidth) / bitmapWidth;
 
             Matrix matrix = new Matrix();
-            matrix.postScale(scaleWidth, scaleHeight);
+            matrix.postScale(scale, scale);
             Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmapWidth, bitmapHeight, matrix, true);
 
             bitmap.recycle();

@@ -14,10 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:transitionName="@string/transition_name_one_emoticon"
         android:layout_margin="5dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
+        android:transitionName="@string/transition_name_one_emoticon"
         tools:src="@raw/img_mogutou1" />
 
 </android.support.v7.widget.CardView>
