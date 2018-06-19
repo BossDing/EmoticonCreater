@@ -56,6 +56,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.OneEmoticonEditActivity"
+            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.GifThemeListActivity"
