@@ -43,6 +43,12 @@ public class SecretEditActivity extends BaseActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        hideKeyboard();
+        super.onBackPressed();
+    }
+
+    @Override
     protected void initData() {
         super.initData();
         mSecret = getIntent().getParcelableExtra(KEY_SECRET);
@@ -97,6 +103,7 @@ public class SecretEditActivity extends BaseActivity {
         if (TextUtils.isEmpty(title)) {
             showSnackbar("写下你的秘密");
         } else {
+            hideKeyboard();
             mSecret.setTitle(title);
 
             TellTheSecretActivity.showOnNewIntent(this, mSecret);

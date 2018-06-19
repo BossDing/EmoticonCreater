@@ -54,6 +54,12 @@ public class OneEmoticonEditActivity extends BaseActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        hideKeyboard();
+        super.onBackPressed();
+    }
+
+    @Override
     protected void initData() {
         super.initData();
 
@@ -109,6 +115,7 @@ public class OneEmoticonEditActivity extends BaseActivity {
     }
 
     private void doCreate() {
+        hideKeyboard();
         showProgress("图片处理中...");
 
         final String text = etTitle.getText().toString();
