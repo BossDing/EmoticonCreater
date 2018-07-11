@@ -21,6 +21,7 @@ import pl.droidsonroids.gif.GifDrawable;
  */
 public class GifHelper {
 
+    private static final float strokeWidth = 1f;//字体边框宽度
     private static final int padding = 5;//内边距
     private static final int textColor = 0xfffafafa;
 
@@ -56,15 +57,20 @@ public class GifHelper {
                             final int maxWidth = bitmap.getWidth() - padding * 2;
 
                             paint.reset();
-                            paint.setColor(0xff000000);
-                            paint.setTextSize(textSize + 0.2f);
-                            paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-                            drawText(canvas, paint, text, textTop, maxWidth);
-                            paint.reset();
+                            paint.setStyle(Paint.Style.FILL);
                             paint.setColor(textColor);
                             paint.setTextSize(textSize);
                             paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
                             drawText(canvas, paint, text, textTop, maxWidth);
+                            paint.reset();
+                            paint.setStyle(Paint.Style.STROKE);
+                            paint.setStrokeWidth(strokeWidth);
+                            paint.setStrokeCap(Paint.Cap.ROUND);
+                            paint.setColor(0x44000000);
+                            paint.setTextSize(textSize);
+                            paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+                            drawText(canvas, paint, text, textTop, maxWidth);
+
                             break;
                         }
                     }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.utils.GlideApp;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 /**

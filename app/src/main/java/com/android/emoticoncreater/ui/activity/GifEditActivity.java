@@ -115,6 +115,7 @@ public class GifEditActivity extends BaseActivity {
 
             try {
                 mDrawable = new GifDrawable(getAssets(), fileName);
+                mDrawable.setLoopCount(0);
                 ivGif.setImageDrawable(mDrawable);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -170,6 +171,7 @@ public class GifEditActivity extends BaseActivity {
             }
         }
 
+        hideKeyboard();
         showProgress("生成中...");
 
         ThreadPoolUtil.getInstache().cachedExecute(new Runnable() {

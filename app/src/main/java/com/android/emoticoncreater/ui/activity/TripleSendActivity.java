@@ -186,7 +186,12 @@ public class TripleSendActivity extends BaseActivity {
     private void doSelectPicture(int requestCode) {
         Intent pickIntent = new Intent(Intent.ACTION_PICK);
         pickIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
-        startActivityForResult(pickIntent, requestCode | REQUEST_CODE_SELECT_PICTURE);
+
+        if (pickIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(pickIntent, requestCode | REQUEST_CODE_SELECT_PICTURE);
+        } else {
+            showSnackbar("该系统没有选图工具");
+        }
     }
 
     private void doCutPicture(Uri inputUri, int requestCode) {

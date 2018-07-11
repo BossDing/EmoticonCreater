@@ -73,7 +73,7 @@
     ]
   },
   {
-    "id": 1,
+    "id": 2,
     "name": "铁骨铮铮",
     "fileName": "img_tieguzhengzheng.gif",
     "textSize": 22,
@@ -107,6 +107,51 @@
         "text": "",
         "startFrame": 34,
         "endFrame": 44
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "窃格瓦拉",
+    "fileName": "ic_qiegewala.gif",
+    "textSize": 20,
+    "maxLength": 14,
+    "duration": 150,
+    "textList": [
+      {
+        "id": 1,
+        "hint": "没有钱啊，肯定要做的啊",
+        "text": "",
+        "startFrame": 0,
+        "endFrame": 23
+      },
+      {
+        "id": 2,
+        "hint": "不做的话没有钱用",
+        "text": "",
+        "startFrame": 24,
+        "endFrame": 35
+      },
+      {
+        "id": 3,
+        "hint": "那你不会去打工啊，有手有脚的",
+        "text": "",
+        "startFrame": 36,
+        "endFrame": 48
+      },
+      {
+        "id": 4,
+        "hint": "打工是不可能打工的",
+        "text": "",
+        "startFrame": 50,
+        "endFrame": 64
+      },
+      {
+        "id": 5,
+        "hint": "这辈子不可能打工的",
+        "text": "",
+        "startFrame": 65,
+        "endFrame": 84
       }
     ]
   }

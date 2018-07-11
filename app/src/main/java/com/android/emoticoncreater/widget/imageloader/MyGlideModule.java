@@ -1,4 +1,4 @@
-package com.android.emoticoncreater.utils;
+package com.android.emoticoncreater.widget.imageloader;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
