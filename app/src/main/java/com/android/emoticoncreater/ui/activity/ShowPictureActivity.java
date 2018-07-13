@@ -57,8 +57,8 @@ public class ShowPictureActivity extends BaseActivity {
         setToolbarBackEnable();
         setToolbarTitle("图片预览");
 
-        ivPicture = (ImageView) findViewById(R.id.iv_picture);
-        btnSend = (FloatingActionButton) findViewById(R.id.btn_send);
+        ivPicture = findViewById(R.id.iv_picture);
+        btnSend = findViewById(R.id.btn_send);
 
         if (mPictureFile != null && mPictureFile.exists()) {
             ImageLoaderFactory.getLoader().loadImageFitCenter(this, ivPicture, mPictureFile, 0, 0);

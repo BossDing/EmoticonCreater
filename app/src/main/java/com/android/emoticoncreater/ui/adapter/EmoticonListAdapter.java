@@ -1,6 +1,7 @@
 package com.android.emoticoncreater.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,12 +50,13 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ListViewHolder(mInflater.inflate(R.layout.item_emoticon_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         bindItem((ListViewHolder) holder, position);
     }
 
@@ -83,7 +85,7 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
         private ListViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            ivPicture = (SquareImageView) itemView.findViewById(R.id.iv_picture);
+            ivPicture = itemView.findViewById(R.id.iv_picture);
         }
     }
 

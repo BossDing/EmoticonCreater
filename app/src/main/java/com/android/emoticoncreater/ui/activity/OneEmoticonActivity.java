@@ -113,7 +113,7 @@ public class OneEmoticonActivity extends BaseActivity {
         setToolbarBackEnable();
         setToolbarTitle("一个表情");
 
-        vpPicture = (ViewPager) findViewById(R.id.vp_picture);
+        vpPicture = findViewById(R.id.vp_picture);
         vpPicture.setAdapter(new EmoticonFragmentPagerAdapter(getSupportFragmentManager(), ImageDataHelper.EMOTICON_TITLES));
 
         setToolbarScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);

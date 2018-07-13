@@ -1,6 +1,7 @@
 package com.android.emoticoncreater.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +29,13 @@ public class ThreeProverbListAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ListViewHolder(mInflater.inflate(R.layout.item_three_proverb_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         bindItem((ListViewHolder) holder, position);
     }
 
@@ -76,12 +78,12 @@ public class ThreeProverbListAdapter extends RecyclerView.Adapter {
         private ListViewHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
-            tvFirst = (TextView) itemView.findViewById(R.id.tv_first);
-            tvSecond = (TextView) itemView.findViewById(R.id.tv_second);
-            tvThird = (TextView) itemView.findViewById(R.id.tv_third);
-            tvUsedTimes = (TextView) itemView.findViewById(R.id.tv_used_times);
-            tvDelete = (TextView) itemView.findViewById(R.id.tv_delete);
+            tvTitle = itemView.findViewById(R.id.tv_title);
+            tvFirst = itemView.findViewById(R.id.tv_first);
+            tvSecond = itemView.findViewById(R.id.tv_second);
+            tvThird = itemView.findViewById(R.id.tv_third);
+            tvUsedTimes = itemView.findViewById(R.id.tv_used_times);
+            tvDelete = itemView.findViewById(R.id.tv_delete);
         }
     }
 

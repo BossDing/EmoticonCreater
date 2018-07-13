@@ -93,17 +93,17 @@ public class TripleSendActivity extends BaseActivity {
         setToolbarBackEnable();
         setToolbarTitle("表情三连发");
 
-        etTitle = (EditText) findViewById(R.id.et_title);
-        ivPicture1 = (ImageView) findViewById(R.id.iv_picture1);
-        ivPicture2 = (ImageView) findViewById(R.id.iv_picture2);
-        ivPicture3 = (ImageView) findViewById(R.id.iv_picture3);
-        etName1 = (EditText) findViewById(R.id.et_name1);
-        etName2 = (EditText) findViewById(R.id.et_name2);
-        etName3 = (EditText) findViewById(R.id.et_name3);
-        btnDoCreate = (Button) findViewById(R.id.btn_do_create);
-        ivPreview = (ImageView) findViewById(R.id.iv_preview);
-        btnDoSave = (Button) findViewById(R.id.btn_do_save);
-        btnDoSend = (Button) findViewById(R.id.btn_do_send);
+        etTitle = findViewById(R.id.et_title);
+        ivPicture1 = findViewById(R.id.iv_picture1);
+        ivPicture2 = findViewById(R.id.iv_picture2);
+        ivPicture3 = findViewById(R.id.iv_picture3);
+        etName1 = findViewById(R.id.et_name1);
+        etName2 = findViewById(R.id.et_name2);
+        etName3 = findViewById(R.id.et_name3);
+        btnDoCreate = findViewById(R.id.btn_do_create);
+        ivPreview = findViewById(R.id.iv_preview);
+        btnDoSave = findViewById(R.id.btn_do_save);
+        btnDoSend = findViewById(R.id.btn_do_send);
 
         ivPicture1.setOnClickListener(mClick);
         ivPicture2.setOnClickListener(mClick);

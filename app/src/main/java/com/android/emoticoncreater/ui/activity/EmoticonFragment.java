@@ -58,7 +58,7 @@ public class EmoticonFragment extends BaseFragment {
     protected void initView(@Nullable Bundle savedInstanceState) {
         super.initView(savedInstanceState);
 
-        rvEmoticonList = (RecyclerView) mFragmentView.findViewById(R.id.rv_emoticon_list);
+        rvEmoticonList = mFragmentView.findViewById(R.id.rv_emoticon_list);
 
         rvEmoticonList.setLayoutManager(new GridLayoutManager(mActivity, 3));
         rvEmoticonList.setAdapter(mEmoticonAdapter);

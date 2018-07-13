@@ -1,6 +1,7 @@
 package com.android.emoticoncreater.ui.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,12 +29,13 @@ public class SecretListAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @NonNull
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ListViewHolder(mInflater.inflate(R.layout.item_secret_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         bindItem((ListViewHolder) holder, position);
     }
 
@@ -58,8 +60,8 @@ public class SecretListAdapter extends RecyclerView.Adapter {
 
         private ListViewHolder(View itemView) {
             super(itemView);
-            ivPicture = (ImageView) itemView.findViewById(R.id.iv_picture);
-            tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
+            ivPicture = itemView.findViewById(R.id.iv_picture);
+            tvTitle = itemView.findViewById(R.id.tv_title);
         }
     }
 }
