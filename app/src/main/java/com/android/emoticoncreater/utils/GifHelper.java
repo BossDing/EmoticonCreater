@@ -66,7 +66,7 @@ public class GifHelper {
                             paint.setStyle(Paint.Style.STROKE);
                             paint.setStrokeWidth(strokeWidth);
                             paint.setStrokeCap(Paint.Cap.ROUND);
-                            paint.setColor(0x44000000);
+                            paint.setColor(0x99000000);
                             paint.setTextSize(textSize);
                             paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
                             drawText(canvas, paint, text, textTop, maxWidth);
