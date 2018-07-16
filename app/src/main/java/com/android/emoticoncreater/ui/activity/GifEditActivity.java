@@ -19,6 +19,7 @@ import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
 import com.android.emoticoncreater.model.GifText;
 import com.android.emoticoncreater.model.GifTheme;
+import com.android.emoticoncreater.utils.FileUtils;
 import com.android.emoticoncreater.utils.GifHelper;
 import com.android.emoticoncreater.utils.SDCardUtils;
 import com.android.emoticoncreater.utils.ThreadPoolUtil;
@@ -88,7 +89,9 @@ public class GifEditActivity extends BaseActivity {
         super.initData();
 
         mTheme = getIntent().getParcelableExtra(KEY_GIF_THEME);
+
         mSavePath = SDCardUtils.getSDCardDir(this) + Constants.PATH_GIF;
+        FileUtils.createdirectory(mSavePath);
 
         mTextList = new ArrayList<>();
         mEditTextList = new ArrayList<>();
