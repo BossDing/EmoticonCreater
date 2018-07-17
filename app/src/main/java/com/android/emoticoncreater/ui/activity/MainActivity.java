@@ -47,9 +47,11 @@ public class MainActivity extends BaseActivity {
         super.initData();
         final String appName = getString(R.string.app_name);
         permissions = new String[]{
-                Manifest.permission.READ_EXTERNAL_STORAGE
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
         errorTips = new String[]{
+                String.format("在设置-应用-%1$s-权限中开启存储权限，以正常使用该功能", appName),
                 String.format("在设置-应用-%1$s-权限中开启存储权限，以正常使用该功能", appName)
         };
 

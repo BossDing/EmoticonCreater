@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:icon="@drawable/ic_triple_send"
+        android:shortcutId="tripleSend"
+        android:shortcutShortLabel="@string/triple_send_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.android.emoticoncreater.ui.activity.TripleSendActivity"
+            android:targetPackage="com.android.emoticoncreater" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:icon="@drawable/ic_tell_secret"
+        android:shortcutId="tellSecret"
+        android:shortcutShortLabel="@string/tell_secret_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.android.emoticoncreater.ui.activity.TellTheSecretActivity"
+            android:targetPackage="com.android.emoticoncreater" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:icon="@drawable/ic_one_emoticon"
+        android:shortcutId="oneEmoticon"
+        android:shortcutShortLabel="@string/one_emoticon_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.android.emoticoncreater.ui.activity.OneEmoticonActivity"
+            android:targetPackage="com.android.emoticoncreater" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+    <shortcut
+        android:icon="@drawable/ic_gif"
+        android:shortcutId="gif"
+        android:shortcutShortLabel="@string/gif_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.android.emoticoncreater.ui.activity.GifThemeListActivity"
+            android:targetPackage="com.android.emoticoncreater" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
+</shortcuts>

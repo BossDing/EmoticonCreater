@@ -7,4 +7,9 @@
 
     <string name="floating_button_behavior">com.android.emoticoncreater.utils.FloatingButtonBehavior</string>
 
+    <string name="triple_send_label">表情三连发</string>
+    <string name="tell_secret_label">告诉你个秘密</string>
+    <string name="one_emoticon_label">一个表情</string>
+    <string name="gif_label">GIF</string>
+
 </resources>
