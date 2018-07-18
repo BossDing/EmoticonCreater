@@ -14,7 +14,7 @@ import com.android.emoticoncreater.db.LiteOrmHelper;
 import com.android.emoticoncreater.model.ThreeProverbBean;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 import com.android.emoticoncreater.ui.adapter.ThreeProverbListAdapter;
-import com.android.emoticoncreater.ui.dialog.DefaultAlertDialog;
+import com.android.emoticoncreater.ui.dialog.AlertDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class ThreeProverbListActivity extends BaseActivity {
 
     private RecyclerView rvProverbList;
 
-    private DefaultAlertDialog mAlertDialog;
+    private AlertDialogFragment mAlertDialog;
 
     private List<ThreeProverbBean> mProverbList;
     private ThreeProverbListAdapter mProverbAdapter;
@@ -75,32 +75,31 @@ public class ThreeProverbListActivity extends BaseActivity {
         if (mDBHelper != null) {
             mDBHelper.closeDB();
         }
-        if (mAlertDialog != null) {
-            mAlertDialog.dismissDialog();
-        }
     }
 
     private void showDeleteDialog(final int position) {
         if (mAlertDialog == null) {
-            mAlertDialog = new DefaultAlertDialog(this);
-            mAlertDialog.setMessage("是否删除这条语录？");
-            mAlertDialog.setCancelButton("取消");
+            mAlertDialog = new AlertDialogFragment();
         }
+        mAlertDialog.setMessage("是否删除这条语录？");
+        mAlertDialog.setCancelButton("取消");
         mAlertDialog.setConfirmButton("删除", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 final ThreeProverbBean proverb = mProverbList.get(position);
                 mDBHelper.delete(proverb);
                 final int count = mProverbList.size();
-                if (position >= 0 && position < count) {
+                if (position < count) {
                     mProverbList.remove(position);
                     mProverbAdapter.notifyItemRemoved(position);
                     mProverbAdapter.notifyItemRangeChanged(position, count - position);
                 }
                 showSnackbar("删除成功");
+                mAlertDialog.dismiss();
             }
         });
-        mAlertDialog.showDialog();
+
+        mAlertDialog.show(getSupportFragmentManager(), "DeleteDialog");
     }
 
     private void getProverbList() {

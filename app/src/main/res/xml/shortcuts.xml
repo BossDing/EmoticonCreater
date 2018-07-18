@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
-    <shortcut
-        android:icon="@drawable/ic_triple_send">
 
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetClass="com.android.emoticoncreater.ui.activity.TripleSendActivity"
-            android:targetPackage="com.android.emoticoncreater" />
-
-        <categories android:name="android.shortcut.conversation" />
-
-    </shortcut>
-
-    <shortcut
-        android:icon="@drawable/ic_gif">
-
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:targetClass="com.android.emoticoncreater.ui.activity.GifThemeListActivity"
-            android:targetPackage="com.android.emoticoncreater" />
-
-        <categories android:name="android.shortcut.conversation" />
-
-    </shortcut>
 
 </shortcuts>

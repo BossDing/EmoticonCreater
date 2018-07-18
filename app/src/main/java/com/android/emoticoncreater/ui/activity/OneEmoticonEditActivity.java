@@ -140,7 +140,7 @@ public class OneEmoticonEditActivity extends BaseActivity {
                             final Uri uri = Uri.fromFile(imageFile);
                             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
 
-                            ShowPictureActivity.show(OneEmoticonEditActivity.this, filePath);//TODO
+                            ShowPictureActivity.show(OneEmoticonEditActivity.this, filePath);
                         } else {
                             showSnackbar("生成失败，图片不存在");
                         }

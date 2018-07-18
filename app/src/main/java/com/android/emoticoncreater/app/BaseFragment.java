@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 
-import com.android.emoticoncreater.ui.dialog.DefaultProgressDialog;
+import com.android.emoticoncreater.ui.dialog.ProgressDialogFragment;
 
 /**
  * 基类
@@ -24,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected View mFragmentView;
 
-    private DefaultProgressDialog mProgress;
+    private ProgressDialogFragment mProgressDialog;
     private InputMethodManager manager;
 
     protected Activity mActivity;
@@ -72,16 +72,21 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void showProgress(@StringRes int stringId) {
-        if (mProgress == null) {
-            mProgress = new DefaultProgressDialog(getActivity());
+        showProgress(getString(stringId));
+    }
+
+    protected void showProgress(String content) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialogFragment();
         }
-        mProgress.setMessage(getString(stringId));
-        mProgress.showDialog();
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMessage(content);
+        mProgressDialog.show(getChildFragmentManager(), "ProgressDialog");
     }
 
     protected void hideProgress() {
-        if (mProgress != null) {
-            mProgress.dismissDialog();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
         }
     }
 

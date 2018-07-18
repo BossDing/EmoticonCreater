@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.ui.dialog.DefaultProgressDialog;
+import com.android.emoticoncreater.ui.dialog.ProgressDialogFragment;
 
 
 /**
@@ -33,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected TabLayout mTabLayout;
 
     private InputMethodManager manager;
-    private DefaultProgressDialog mProgress;
+    private ProgressDialogFragment mProgressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,10 +69,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void initView(Bundle savedInstanceState) {
-        mRootView = (CoordinatorLayout) findViewById(R.id.rootview);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbarlayout);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mTabLayout = (TabLayout) findViewById(R.id.tablayout);
+        mRootView = findViewById(R.id.rootview);
+        mAppBarLayout = findViewById(R.id.appbarlayout);
+        mToolbar = findViewById(R.id.toolbar);
+        mTabLayout = findViewById(R.id.tablayout);
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);
         }
@@ -134,16 +134,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void showProgress(String content) {
-        if (mProgress == null) {
-            mProgress = new DefaultProgressDialog(this);
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialogFragment();
         }
-        mProgress.setMessage(content);
-        mProgress.showDialog();
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMessage(content);
+        mProgressDialog.show(getSupportFragmentManager(), "ProgressDialog");
     }
 
     protected void hideProgress() {
-        if (mProgress != null) {
-            mProgress.dismissDialog();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
         }
     }
 
