@@ -2,6 +2,7 @@ package com.android.emoticoncreater.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -142,7 +143,8 @@ public class TellTheSecretActivity extends BaseActivity {
             ThreadPoolUtil.getInstache().cachedExecute(new Runnable() {
                 @Override
                 public void run() {
-                    final File imageFile = SecretHelper.createSecret(getResources(), mSecretList, mSavePath);
+                    final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/bold.ttf");
+                    final File imageFile = SecretHelper.createSecret(getResources(), mSecretList, mSavePath, typeface);
 
                     runOnUiThread(new Runnable() {
                         @Override

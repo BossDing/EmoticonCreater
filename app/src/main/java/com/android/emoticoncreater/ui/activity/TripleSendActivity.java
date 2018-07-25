@@ -3,6 +3,7 @@ package com.android.emoticoncreater.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -142,8 +143,13 @@ public class TripleSendActivity extends BaseActivity {
                 final int pictureCode = getPictureCode(requestCode);
                 if (actionCode == REQUEST_CODE_SELECT_PICTURE) {
                     if (data != null) {
-                        doCutPicture(data.getData(), pictureCode);
+                        final Uri uri = data.getData();
+                        if (uri != null) {
+                            doCutPicture(uri, pictureCode);
+                            return;
+                        }
                     }
+                    showSnackbar("图片获取失败");
                 } else if (actionCode == REQUEST_CODE_CUTE_PICTURE) {
                     if (mCutePhotoFile != null && mCutePhotoFile.exists()) {
                         if (REQUEST_CODE_PICTURE1 == pictureCode) {
@@ -160,6 +166,8 @@ public class TripleSendActivity extends BaseActivity {
                             mPath3 = mCutePhotoFile.getAbsolutePath();
                             ImageLoaderFactory.getLoader().loadImage(this, ivPicture3, mPath3);
                         }
+                    } else {
+                        showSnackbar("图片裁剪失败");
                     }
                 }
             }
@@ -217,7 +225,12 @@ public class TripleSendActivity extends BaseActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         intent.putExtra("noFaceDetection", true);
-        startActivityForResult(intent, requestCode | REQUEST_CODE_CUTE_PICTURE);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, requestCode | REQUEST_CODE_CUTE_PICTURE);
+        } else {
+            showSnackbar("没有系统裁剪图片工具，本功能无法使用");
+        }
     }
 
     private void doCreatePicture() {
@@ -244,8 +257,9 @@ public class TripleSendActivity extends BaseActivity {
             ThreadPoolUtil.getInstache().cachedExecute(new Runnable() {
                 @Override
                 public void run() {
+                    final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/bold.ttf");
 
-                    TripleSendHelper utils = new TripleSendHelper.Builder()
+                    TripleSendHelper helper = new TripleSendHelper.Builder()
                             .setTitle(title)
                             .setPath1(mPath1)
                             .setPath2(mPath2)
@@ -253,16 +267,20 @@ public class TripleSendActivity extends BaseActivity {
                             .setName1(name1)
                             .setName2(name2)
                             .setName3(name3)
-                            .setSavePath(mSavePath).bulid();
+                            .setSavePath(mSavePath)
+                            .setTypeface(typeface)
+                            .bulid();
 
-                    mCurrentImage = utils.createExpression();
+                    mCurrentImage = helper.create();
 
                     doStatistics(title, name1, name2, name3);
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (mCurrentImage.exists()) {
+                            if (mCurrentImage == null) {
+                                showSnackbar("已选择的图片不存在，请重新选择");
+                            } else if (mCurrentImage.exists()) {
                                 final String filePath = mCurrentImage.getAbsolutePath();
                                 ImageLoaderFactory.getLoader().loadImage(TripleSendActivity.this, ivPreview, filePath);
 
@@ -270,7 +288,7 @@ public class TripleSendActivity extends BaseActivity {
 
                                 showSnackbar("保存路径：" + filePath);
                             } else {
-                                showSnackbar("生成失败");
+                                showSnackbar("图片生成失败");
                             }
                             hideProgress();
                         }

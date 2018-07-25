@@ -3,6 +3,7 @@ package com.android.emoticoncreater.ui.activity;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
@@ -129,7 +130,8 @@ public class OneEmoticonEditActivity extends BaseActivity {
         ThreadPoolUtil.getInstache().cachedExecute(new Runnable() {
             @Override
             public void run() {
-                final File imageFile = OneEmoticonHelper.create(getResources(), mPicture, mSavePath);
+                final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/bold.ttf");
+                final File imageFile = OneEmoticonHelper.create(getResources(), mPicture, mSavePath, typeface);
 
                 runOnUiThread(new Runnable() {
                     @Override

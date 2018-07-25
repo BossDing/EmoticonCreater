@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.Typeface;
 
 import com.android.emoticoncreater.model.GifText;
 import com.android.emoticoncreater.model.GifTheme;
@@ -25,7 +26,7 @@ public class GifHelper {
     private static final int padding = 5;//内边距
     private static final int textColor = 0xfffafafa;
 
-    public static File create(AssetManager assetManager, GifTheme theme, String savePath) {
+    public static File create(AssetManager assetManager, GifTheme theme, String savePath, Typeface typeface) {
         try {
             final String gifFileName = theme.getFileName();
             final float textSize = theme.getTextSize();
@@ -56,21 +57,11 @@ public class GifHelper {
                             final float textTop = bitmap.getHeight() - padding - textSize;
                             final int maxWidth = bitmap.getWidth() - padding * 2;
 
-                            paint.reset();
-                            paint.setStyle(Paint.Style.FILL);
-                            paint.setColor(textColor);
-                            paint.setTextSize(textSize);
-                            paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-                            drawText(canvas, paint, text, textTop, maxWidth);
-                            paint.reset();
-                            paint.setStyle(Paint.Style.STROKE);
-                            paint.setStrokeWidth(strokeWidth);
-                            paint.setStrokeCap(Paint.Cap.ROUND);
-                            paint.setColor(0x99000000);
-                            paint.setTextSize(textSize);
-                            paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+                            initTextPaint(paint, textSize, textColor, true, typeface);
                             drawText(canvas, paint, text, textTop, maxWidth);
 
+                            initTextPaint(paint, textSize, 0x99000000, false, typeface);
+                            drawText(canvas, paint, text, textTop, maxWidth);
                             break;
                         }
                     }
@@ -90,6 +81,21 @@ public class GifHelper {
         }
 
         return null;
+    }
+
+    private static void initTextPaint(Paint paint, float textSize, int textColor, boolean isFill, Typeface typeface) {
+        paint.reset();
+        if (isFill) {
+            paint.setStyle(Paint.Style.FILL);
+        } else {
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(strokeWidth);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+        paint.setColor(textColor);
+        paint.setTextSize(textSize);
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setTypeface(typeface);
     }
 
     private static void drawText(Canvas canvas, Paint paint, String text, float top, int maxWidth) {

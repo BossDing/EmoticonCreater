@@ -2,6 +2,7 @@ package com.android.emoticoncreater.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -181,7 +182,8 @@ public class GifEditActivity extends BaseActivity {
             @Override
             public void run() {
 
-                final File imageFile = GifHelper.create(getAssets(), mTheme, mSavePath);
+                final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/bold.ttf");
+                final File imageFile = GifHelper.create(getAssets(), mTheme, mSavePath, typeface);
 
                 runOnUiThread(new Runnable() {
                     @Override

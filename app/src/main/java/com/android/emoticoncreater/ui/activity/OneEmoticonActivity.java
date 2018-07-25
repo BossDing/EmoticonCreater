@@ -81,8 +81,13 @@ public class OneEmoticonActivity extends BaseActivity {
         if (resultCode == RESULT_OK) {
             if (REQUEST_CODE_SELECT_PICTURE == requestCode) {
                 if (data != null) {
-                    doCutPicture(data.getData());
+                    final Uri uri = data.getData();
+                    if (uri != null) {
+                        doCutPicture(uri);
+                        return;
+                    }
                 }
+                showSnackbar("图片获取失败");
             } else if (REQUEST_CODE_CUTE_PICTURE == requestCode) {
                 if (mCutePhotoFile != null && mCutePhotoFile.exists()) {
                     final String filePath = mCutePhotoFile.getAbsolutePath();
@@ -92,7 +97,7 @@ public class OneEmoticonActivity extends BaseActivity {
 
                     OneEmoticonEditActivity.show(this, picture);
                 } else {
-                    showSnackbar("图片不存在");
+                    showSnackbar("图片裁剪失败");
                 }
             }
         }
@@ -154,6 +159,11 @@ public class OneEmoticonActivity extends BaseActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri);
         intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         intent.putExtra("noFaceDetection", true);
-        startActivityForResult(intent, REQUEST_CODE_CUTE_PICTURE);
+
+        if (intent.resolveActivity(getPackageManager()) != null) {  //存在
+            startActivityForResult(intent, REQUEST_CODE_CUTE_PICTURE);
+        } else {
+            showSnackbar("没有系统裁剪图片工具，本功能无法使用");
+        }
     }
 }

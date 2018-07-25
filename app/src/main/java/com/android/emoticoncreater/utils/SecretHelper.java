@@ -8,6 +8,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 
 import com.android.emoticoncreater.model.PictureBean;
 
@@ -27,12 +28,10 @@ public class SecretHelper {
     private static final int backgroundColor = 0xffffffff;
     private static final int textColor = 0xff010101;
 
-    public static File createSecret(Resources resources, final List<PictureBean> secretList, final String savePath) {
+    public static File createSecret(Resources resources, final List<PictureBean> secretList,
+                                    final String savePath, final Typeface typeface) {
         final Paint paint = new Paint();
-        paint.reset();
-        paint.setColor(textColor);
-        paint.setTextSize(textSize);
-        paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        initTextPaint(paint, typeface);
 
         final int totalWidth = padding + pictureWidth + padding;
         int totalHeight = 0;
@@ -45,19 +44,14 @@ public class SecretHelper {
             totalHeight += padding;
         }
 
-        paint.reset();
-        paint.setColor(backgroundColor);
-        paint.setStyle(Paint.Style.FILL);
+        initBackgroundPaint(paint);
 
         final Bitmap picture = Bitmap.createBitmap(totalWidth, totalHeight, Bitmap.Config.ARGB_8888);
         final Rect background = new Rect(0, 0, totalWidth, totalHeight);
         final Canvas canvas = new Canvas(picture);
         canvas.drawRect(background, paint);
 
-        paint.reset();
-        paint.setColor(textColor);
-        paint.setTextSize(textSize);
-        paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        initTextPaint(paint, typeface);
 
         totalHeight = 0;
         for (PictureBean secret : secretList) {
@@ -103,6 +97,20 @@ public class SecretHelper {
         picture.recycle();
 
         return newFile;
+    }
+
+    private static void initBackgroundPaint(final Paint paint) {
+        paint.reset();
+        paint.setColor(backgroundColor);
+        paint.setStyle(Paint.Style.FILL);
+    }
+
+    private static void initTextPaint(final Paint paint, final Typeface typeface) {
+        paint.reset();
+        paint.setColor(textColor);
+        paint.setTextSize(textSize);
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setTypeface(typeface);
     }
 
     private static void drawText(Canvas canvas, Paint paint, String text, int top) {

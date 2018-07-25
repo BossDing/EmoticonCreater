@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 
 import java.io.File;
 
@@ -34,6 +35,7 @@ public class TripleSendHelper {
     private final String name2;
     private final String name3;
     private final String savePath;
+    private final Typeface typeface;
 
     private TripleSendHelper(Builder builder) {
         this.title = builder.title;
@@ -44,13 +46,13 @@ public class TripleSendHelper {
         this.name2 = builder.name2;
         this.name3 = builder.name3;
         this.savePath = builder.savePath;
+        this.typeface = builder.typeface == null ? Typeface.DEFAULT_BOLD : builder.typeface;
     }
 
-    public File createExpression() {
+    public File create() {
 
         final Paint paint = new Paint();
-        paint.setColor(backgroundColor);
-        paint.setStyle(Paint.Style.FILL);
+        initBackgroundPaint(paint);
 
         final Bitmap picture = Bitmap.createBitmap(backgroundWidth, backgroundHeight, Bitmap.Config.ARGB_8888);
         final Rect background = new Rect(0, 0, backgroundWidth, backgroundHeight);
@@ -66,6 +68,10 @@ public class TripleSendHelper {
         final boolean ignoreThird = path1.equals(path3);
 
         final Bitmap bitmap1 = getBitmapByFilePath(path1);
+        if (bitmap1 == null) {
+            return null;
+        }
+
         drawBitmap(canvas, bitmap1, left1, left1 + pictureWidth);
         if (ignoreSecond) {
             drawBitmap(canvas, bitmap1, left2, left2 + pictureWidth);
@@ -77,19 +83,24 @@ public class TripleSendHelper {
 
         if (!ignoreSecond) {
             final Bitmap bitmap2 = getBitmapByFilePath(path2);
+            if (bitmap2 == null) {
+                return null;
+            }
+
             drawBitmap(canvas, bitmap2, left2, left2 + pictureWidth);
             bitmap2.recycle();
         }
         if (!ignoreThird) {
             final Bitmap bitmap3 = getBitmapByFilePath(path3);
+            if (bitmap3 == null) {
+                return null;
+            }
+
             drawBitmap(canvas, bitmap3, left3, left3 + pictureWidth);
             bitmap3.recycle();
         }
 
-        paint.reset();
-        paint.setColor(textColor);
-        paint.setTextSize(textSize);
-        paint.setFlags(Paint.FAKE_BOLD_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        initTextPaint(paint, typeface);
 
         final Rect titleRect = new Rect();
         paint.getTextBounds(title, 0, title.length(), titleRect);
@@ -108,8 +119,40 @@ public class TripleSendHelper {
         return newFile;
     }
 
+    private void initBackgroundPaint(final Paint paint) {
+        paint.reset();
+        paint.setColor(backgroundColor);
+        paint.setStyle(Paint.Style.FILL);
+    }
+
+    private void initTextPaint(final Paint paint, final Typeface typeface) {
+        paint.reset();
+        paint.setColor(textColor);
+        paint.setTextSize(textSize);
+        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        paint.setTypeface(typeface);
+    }
+
+    private void drawBitmap(Canvas canvas, Bitmap bitmap, int left, int right) {
+        final Rect pictureRect = new Rect(0, 0, pictureWidth, pictureHeight);
+        final RectF dst = new RectF(left, textHeight, right, pictureHeight + textHeight);
+        canvas.drawBitmap(bitmap, pictureRect, dst, null);
+    }
+
+    private void drawText(Canvas canvas, Paint paint, String text, int left) {
+        final Rect nameRect = new Rect();
+        paint.getTextBounds(text, 0, text.length(), nameRect);
+        final float nameTop = textHeight + pictureHeight + (textHeight - textSize) / 2f - nameRect.top;
+        final float nameLeft1 = (pictureWidth - nameRect.right) / 2f + left;
+        canvas.drawText(text, nameLeft1, nameTop, paint);
+    }
+
     private Bitmap getBitmapByFilePath(String path) {
         final Bitmap bitmap = BitmapFactory.decodeFile(path);
+        if (bitmap == null) {
+            return null;
+        }
+
         final int bitmapWidth = bitmap.getWidth();
         final int bitmapHeight = bitmap.getHeight();
 
@@ -129,20 +172,6 @@ public class TripleSendHelper {
         return bitmap;
     }
 
-    private void drawBitmap(Canvas canvas, Bitmap bitmap, int left, int right) {
-        final Rect pictureRect = new Rect(0, 0, pictureWidth, pictureHeight);
-        final RectF dst = new RectF(left, textHeight, right, pictureHeight + textHeight);
-        canvas.drawBitmap(bitmap, pictureRect, dst, null);
-    }
-
-    private void drawText(Canvas canvas, Paint paint, String text, int left) {
-        final Rect nameRect = new Rect();
-        paint.getTextBounds(text, 0, text.length(), nameRect);
-        final float nameTop = textHeight + pictureHeight + (textHeight - textSize) / 2f - nameRect.top;
-        final float nameLeft1 = (pictureWidth - nameRect.right) / 2f + left;
-        canvas.drawText(text, nameLeft1, nameTop, paint);
-    }
-
     public static class Builder {
         private String title;
         private String path1;
@@ -152,6 +181,7 @@ public class TripleSendHelper {
         private String name2;
         private String name3;
         private String savePath;
+        private Typeface typeface;
 
         public Builder() {
 
@@ -194,6 +224,11 @@ public class TripleSendHelper {
 
         public Builder setSavePath(String savePath) {
             this.savePath = savePath;
+            return this;
+        }
+
+        public Builder setTypeface(Typeface typeface) {
+            this.typeface = typeface;
             return this;
         }
 

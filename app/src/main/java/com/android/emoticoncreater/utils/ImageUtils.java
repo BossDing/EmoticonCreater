@@ -20,12 +20,11 @@ import java.io.FileOutputStream;
 public class ImageUtils {
 
     public static File saveToGif(final ByteArrayOutputStream os, String path, String fileName) {
-        File file = new File(path);
+        File file = new File(path, fileName);
         try {
             if (!file.exists()) {
-                file.mkdir();
+                file.mkdirs();
             }
-            file = new File(path, fileName);
             FileOutputStream out = new FileOutputStream(file);
             out.write(os.toByteArray());
             out.flush();
@@ -37,12 +36,11 @@ public class ImageUtils {
     }
 
     public static File saveBitmapToJpg(Bitmap bitmap, String path, String bitName) {
-        File file = new File(path);
+        File file = new File(path, bitName);
         try {
             if (!file.exists()) {
-                file.mkdir();
+                file.mkdirs();
             }
-            file = new File(path, bitName);
             FileOutputStream out = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
             out.flush();
