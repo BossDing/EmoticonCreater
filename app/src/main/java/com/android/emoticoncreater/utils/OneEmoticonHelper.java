@@ -26,7 +26,11 @@ public class OneEmoticonHelper {
     private static final int backgroundColor = 0xffffffff;
     private static final int textColor = 0xff010101;
 
-    public static File create(Resources resources, final PictureBean emoticon, final String savePath, final Typeface typeface) {
+    public static File create(Resources resources, final PictureBean emoticon,
+                              final String savePath, final Typeface typeface, boolean isOriginal) {
+        final int quality = isOriginal ? 100 : 5;
+        final Bitmap.Config config = isOriginal ? Bitmap.Config.ARGB_8888 : Bitmap.Config.ARGB_4444;
+
         final String text = emoticon.getTitle();
         final int resourceId = emoticon.getResourceId();
         final String filePath = emoticon.getFilePath();
@@ -54,7 +58,7 @@ public class OneEmoticonHelper {
         final int totalWidth = padding + bitmap.getWidth() + padding;
         final int totalHeight = padding + bitmap.getHeight() + padding + textHeight + padding;
 
-        final Bitmap background = Bitmap.createBitmap(totalWidth, totalHeight, Bitmap.Config.ARGB_8888);
+        final Bitmap background = Bitmap.createBitmap(totalWidth, totalHeight, config);
         final Rect backgroundRect = new Rect(0, 0, totalWidth, totalHeight);
         final Canvas canvas = new Canvas(background);
         canvas.drawRect(backgroundRect, paint);
@@ -80,7 +84,7 @@ public class OneEmoticonHelper {
         }
 
         final String imageName = System.currentTimeMillis() + ".jpg";
-        final File newFile = ImageUtils.saveBitmapToJpg(background, savePath, imageName);
+        final File newFile = ImageUtils.saveBitmapToJpg(background, savePath, imageName, quality);
         background.recycle();
 
         return newFile;

@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.ui.dialog.ProgressDialogFragment;
+import com.android.emoticoncreater.ui.dialog.ProgressDialog;
 
 
 /**
@@ -33,7 +33,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected TabLayout mTabLayout;
 
     private InputMethodManager manager;
-    private ProgressDialogFragment mProgressDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -135,11 +135,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void showProgress(String content) {
         if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialogFragment();
+            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog.setCancelable(false);
         }
-        mProgressDialog.setCancelable(false);
+
         mProgressDialog.setMessage(content);
-        mProgressDialog.show(getSupportFragmentManager(), "ProgressDialog");
+        mProgressDialog.show();
     }
 
     protected void hideProgress() {

@@ -19,10 +19,7 @@ public class SDCardUtils {
     }
 
     //  /storage/emulated/0
-    public static String getSDCardDir(Context context) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            return getExternalFilesDir(context);
-//        }
+    public static String getSDCardDir() {
         return getSDCardPublicDir(Environment.DIRECTORY_DCIM);
     }
 

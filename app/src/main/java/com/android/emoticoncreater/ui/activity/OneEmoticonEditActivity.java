@@ -7,10 +7,12 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
 import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.utils.FileUtils;
 import com.android.emoticoncreater.utils.OneEmoticonHelper;
 import com.android.emoticoncreater.utils.SDCardUtils;
 import com.android.emoticoncreater.utils.ThreadPoolUtil;
@@ -31,6 +34,8 @@ public class OneEmoticonEditActivity extends BaseActivity {
 
     private ImageView ivPicture;
     private AppCompatEditText etTitle;
+    private TextView tvQuality;
+    private SwitchCompat swQuality;
 
     private PictureBean mPicture;
     private String mSavePath;
@@ -65,7 +70,9 @@ public class OneEmoticonEditActivity extends BaseActivity {
         super.initData();
 
         mPicture = getIntent().getParcelableExtra(KEY_ONE_EMOTICON);
-        mSavePath = SDCardUtils.getSDCardDir(this) + Constants.PATH_ONE_EMOTICON;
+
+        mSavePath = SDCardUtils.getSDCardDir() + Constants.PATH_ONE_EMOTICON;
+        FileUtils.createdirectory(mSavePath);
     }
 
     @Override
@@ -78,6 +85,8 @@ public class OneEmoticonEditActivity extends BaseActivity {
 
         ivPicture = findViewById(R.id.iv_picture);
         etTitle = findViewById(R.id.et_title);
+        tvQuality = findViewById(R.id.tv_quality);
+        swQuality = findViewById(R.id.sw_quality);
 
         etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -85,6 +94,14 @@ public class OneEmoticonEditActivity extends BaseActivity {
                 return event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
             }
         });
+
+        swQuality.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                tvQuality.setText(isChecked ? "HD画质" : "AV画质");
+            }
+        });
+        swQuality.setChecked(true);
 
         if (mPicture != null) {
             final String filePath = mPicture.getFilePath();
@@ -130,8 +147,9 @@ public class OneEmoticonEditActivity extends BaseActivity {
         ThreadPoolUtil.getInstache().cachedExecute(new Runnable() {
             @Override
             public void run() {
+                final boolean isOriginal = swQuality.isChecked();
                 final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/bold.ttf");
-                final File imageFile = OneEmoticonHelper.create(getResources(), mPicture, mSavePath, typeface);
+                final File imageFile = OneEmoticonHelper.create(getResources(), mPicture, mSavePath, typeface, isOriginal);
 
                 runOnUiThread(new Runnable() {
                     @Override

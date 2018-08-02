@@ -22,9 +22,6 @@ public class ImageUtils {
     public static File saveToGif(final ByteArrayOutputStream os, String path, String fileName) {
         File file = new File(path, fileName);
         try {
-            if (!file.exists()) {
-                file.mkdirs();
-            }
             FileOutputStream out = new FileOutputStream(file);
             out.write(os.toByteArray());
             out.flush();
@@ -35,14 +32,15 @@ public class ImageUtils {
         return file;
     }
 
-    public static File saveBitmapToJpg(Bitmap bitmap, String path, String bitName) {
-        File file = new File(path, bitName);
+    public static File saveBitmapToJpg(Bitmap bitmap, String path, String pictureName) {
+        return saveBitmapToJpg(bitmap, path, pictureName, 100);
+    }
+
+    public static File saveBitmapToJpg(Bitmap bitmap, String path, String pictureName, int quality) {
+        File file = new File(path, pictureName);
         try {
-            if (!file.exists()) {
-                file.mkdirs();
-            }
             FileOutputStream out = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, out);
             out.flush();
             out.close();
         } catch (Exception e) {

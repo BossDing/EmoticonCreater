@@ -23,7 +23,6 @@ public class AlertDialogFragment extends DialogFragment {
     private DialogInterface.OnClickListener mCancelClick;
 
     public AlertDialogFragment() {
-
     }
 
     @Override
@@ -42,7 +41,6 @@ public class AlertDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setCancelable(true);
         builder.setTitle(mTitle);
         builder.setMessage(mMessage);
         builder.setPositiveButton(mConfirmButtonText, mConfirmClick);

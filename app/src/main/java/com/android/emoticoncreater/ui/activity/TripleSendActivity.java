@@ -79,9 +79,9 @@ public class TripleSendActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        mSavePath = SDCardUtils.getSDCardDir(this) + Constants.PATH_TRIPLE_SEND;
-        mTempPath = SDCardUtils.getExternalCacheDir(this);
 
+        mSavePath = SDCardUtils.getSDCardDir() + Constants.PATH_TRIPLE_SEND;
+        mTempPath = SDCardUtils.getExternalCacheDir(this);
         FileUtils.createdirectory(mSavePath);
         FileUtils.createdirectory(mTempPath);
 

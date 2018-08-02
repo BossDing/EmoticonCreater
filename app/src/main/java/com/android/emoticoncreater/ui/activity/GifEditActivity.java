@@ -91,7 +91,7 @@ public class GifEditActivity extends BaseActivity {
 
         mTheme = getIntent().getParcelableExtra(KEY_GIF_THEME);
 
-        mSavePath = SDCardUtils.getSDCardDir(this) + Constants.PATH_GIF;
+        mSavePath = SDCardUtils.getSDCardDir() + Constants.PATH_GIF;
         FileUtils.createdirectory(mSavePath);
 
         mTextList = new ArrayList<>();
