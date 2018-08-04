@@ -187,8 +187,8 @@ public class PermissionsHelper {
 
         //存储
         public Builder readExternalStorage() {
-            if (!permissionList.contains(Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                permissionList.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (!permissionList.contains(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
                 errorTipsList.add(String.format(READ_EXTERNAL_STORAGE_TIPS, APP_NAME));
             }
             return this;
