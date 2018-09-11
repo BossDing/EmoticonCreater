@@ -7,10 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
@@ -64,13 +62,6 @@ public class SecretEditActivity extends BaseActivity {
 
         ivPicture = (AppCompatImageView) findViewById(R.id.iv_picture);
         etTitle = (AppCompatEditText) findViewById(R.id.et_title);
-
-        etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
-            }
-        });
 
         if (mSecret != null) {
             final int resourceId = mSecret.getResourceId();

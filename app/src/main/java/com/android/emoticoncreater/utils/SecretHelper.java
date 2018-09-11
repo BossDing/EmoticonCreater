@@ -9,6 +9,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 
 import com.android.emoticoncreater.model.PictureBean;
 
@@ -30,66 +33,51 @@ public class SecretHelper {
 
     public static File createSecret(Resources resources, final List<PictureBean> secretList,
                                     final String savePath, final Typeface typeface) {
-        final Paint paint = new Paint();
-        initTextPaint(paint, typeface);
+        final TextPaint textPaint = createTextPaint(typeface);
 
         final int totalWidth = padding + pictureWidth + padding;
         int totalHeight = 0;
         for (PictureBean secret : secretList) {
+            final String text = secret.getTitle();
+            final StaticLayout currentLayout = new StaticLayout(text, textPaint, pictureWidth,
+                    Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
+
             totalHeight += padding;
             totalHeight += pictureHeight;
             totalHeight += padding;
-            final String text = secret.getTitle();
-            totalHeight += getTextHeight(paint, text);
+            totalHeight += currentLayout.getHeight();
             totalHeight += padding;
         }
 
-        initBackgroundPaint(paint);
-
+        final Paint backgroundPatnt = createBackgroundPaint();
         final Bitmap picture = Bitmap.createBitmap(totalWidth, totalHeight, Bitmap.Config.ARGB_8888);
         final Rect background = new Rect(0, 0, totalWidth, totalHeight);
         final Canvas canvas = new Canvas(picture);
-        canvas.drawRect(background, paint);
-
-        initTextPaint(paint, typeface);
+        canvas.drawRect(background, backgroundPatnt);
 
         totalHeight = 0;
         for (PictureBean secret : secretList) {
             final String text = secret.getTitle();
+            final StaticLayout currentLayout = new StaticLayout(text, textPaint, pictureWidth,
+                    Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
+
             final int resourceId = secret.getResourceId();
 
             totalHeight += padding;
 
-            drawBitmap(resources, canvas, resourceId, totalHeight);
+            canvas.translate(0, padding);
+            drawBitmap(resources, canvas, resourceId);
 
             totalHeight += pictureHeight;
             totalHeight += padding;
 
-            final Rect textRect = new Rect();
-            paint.getTextBounds(text, 0, text.length(), textRect);
+            canvas.translate(totalWidth / 2, pictureHeight + padding);
+            currentLayout.draw(canvas);
 
-            final int textWidth = textRect.right;
-            final int maxTextWidth = pictureWidth - padding * 2;
-
-            if (textWidth <= maxTextWidth) {
-                final float textLeft = (pictureWidth - textWidth) / 2f + padding;
-                final float textTop = totalHeight - textRect.top;
-                canvas.drawText(text, textLeft, textTop, paint);
-                totalHeight += textSize;
-            } else {
-                final float line = textWidth / (float) maxTextWidth;
-                final int count = (int) (text.length() / line);
-                final String text1 = text.substring(0, count);
-                final String text2 = text.substring(count, text.length());
-
-                drawText(canvas, paint, text1, totalHeight);
-                totalHeight += textSize;
-
-                drawText(canvas, paint, text2, totalHeight);
-                totalHeight += padding / 2 + textSize;
-            }
-
+            totalHeight += currentLayout.getHeight();
             totalHeight += padding;
+
+            canvas.translate(-totalWidth / 2, currentLayout.getHeight() + padding);
         }
 
         final String imageName = System.currentTimeMillis() + ".jpg";
@@ -99,34 +87,27 @@ public class SecretHelper {
         return newFile;
     }
 
-    private static void initBackgroundPaint(final Paint paint) {
-        paint.reset();
-        paint.setColor(backgroundColor);
-        paint.setStyle(Paint.Style.FILL);
+    private static Paint createBackgroundPaint() {
+        final Paint backgroundPaint = new Paint();
+        backgroundPaint.setColor(backgroundColor);
+        backgroundPaint.setStyle(Paint.Style.FILL);
+        return backgroundPaint;
     }
 
-    private static void initTextPaint(final Paint paint, final Typeface typeface) {
-        paint.reset();
-        paint.setColor(textColor);
-        paint.setTextSize(textSize);
-        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        paint.setTypeface(typeface);
+    private static TextPaint createTextPaint(Typeface typeface) {
+        final TextPaint textPaint = new TextPaint();
+        textPaint.setColor(textColor);
+        textPaint.setTextSize(textSize);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setTypeface(typeface);
+        return textPaint;
     }
 
-    private static void drawText(Canvas canvas, Paint paint, String text, int top) {
-        final Rect textRect = new Rect();
-        paint.getTextBounds(text, 0, text.length(), textRect);
-        final int textWidth = textRect.right;
-
-        final float textTop = top - textRect.top;
-        final float textLeft = (pictureWidth - textWidth) / 2f + padding;
-        canvas.drawText(text, textLeft, textTop, paint);
-    }
-
-    private static void drawBitmap(Resources resources, Canvas canvas, int resourceId, int top) {
+    private static void drawBitmap(Resources resources, Canvas canvas, int resourceId) {
         final Bitmap bitmap = getBitmapByResourcesId(resources, resourceId);
         final Rect pictureRect = new Rect(0, 0, pictureWidth, pictureHeight);
-        final RectF dst = new RectF(padding, top, pictureWidth + padding, top + pictureHeight);
+        final RectF dst = new RectF(padding, 0, pictureWidth + padding, pictureHeight);
         canvas.drawBitmap(bitmap, pictureRect, dst, null);
         bitmap.recycle();
     }

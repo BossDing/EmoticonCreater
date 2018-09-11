@@ -88,7 +88,6 @@ public class OneEmoticonHelper {
 
     private static Paint createBackgroundPaint() {
         final Paint backgroundPaint = new Paint();
-        backgroundPaint.reset();
         backgroundPaint.setColor(backgroundColor);
         backgroundPaint.setStyle(Paint.Style.FILL);
         return backgroundPaint;
