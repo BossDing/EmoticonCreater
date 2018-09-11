@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
@@ -88,12 +87,12 @@ public class OneEmoticonEditActivity extends BaseActivity {
         tvQuality = findViewById(R.id.tv_quality);
         swQuality = findViewById(R.id.sw_quality);
 
-        etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
-            }
-        });
+//        etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                return event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
+//            }
+//        });
 
         swQuality.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

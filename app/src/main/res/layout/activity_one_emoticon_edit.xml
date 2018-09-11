@@ -54,8 +54,7 @@
                         android:hint="填写表情文字"
                         android:imeOptions="actionDone"
                         android:inputType="textMultiLine"
-                        android:maxLength="20"
-                        android:maxLines="2"
+                        android:maxLength="100"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
