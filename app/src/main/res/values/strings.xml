@@ -11,5 +11,6 @@
     <string name="tell_secret_label">告诉你个秘密</string>
     <string name="one_emoticon_label">一个表情</string>
     <string name="gif_label">GIF</string>
+    <string name="mature_label">你已经很成熟了</string>
 
 </resources>

@@ -56,4 +56,18 @@
 
     </shortcut>
 
+    <shortcut
+        android:icon="@drawable/ic_mature"
+        android:shortcutId="mature"
+        android:shortcutShortLabel="@string/mature_label">
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.android.emoticoncreater.ui.activity.MatureActivity"
+            android:targetPackage="com.android.emoticoncreater" />
+
+        <categories android:name="android.shortcut.conversation" />
+
+    </shortcut>
+
 </shortcuts>
