@@ -76,7 +76,8 @@ public class ImageDataHelper {
             R.raw.img_xiongmaoren49, R.raw.img_xiongmaoren50, R.raw.img_xiongmaoren51,
             R.raw.img_xiongmaoren52, R.raw.img_xiongmaoren53, R.raw.img_xiongmaoren54,
             R.raw.img_xiongmaoren55, R.raw.img_xiongmaoren56, R.raw.img_xiongmaoren57,
-            R.raw.img_xiongmaoren58, R.raw.img_xiongmaoren59, R.raw.img_xiongmaoren60
+            R.raw.img_xiongmaoren58, R.raw.img_xiongmaoren59, R.raw.img_xiongmaoren60,
+            R.raw.img_xiongmaoren61, R.raw.img_xiongmaoren62, R.raw.img_xiongmaoren63
     };
     public static final int[] HUA_JI_LIST = {
             R.raw.img_huaji1, R.raw.img_huaji2, R.raw.img_huaji3,
