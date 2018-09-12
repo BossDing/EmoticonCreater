@@ -8,20 +8,22 @@
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="4dp"
     app:cardElevation="5dp"
-    app:contentPadding="5dp">
+    app:contentPadding="5dp"
+    tools:layout_width="180dp">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:minLines="2"
             android:textColor="@color/color_101010"
             android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="标题" />
 
         <TextView
@@ -30,6 +32,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_101010"
             android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
             tools:text="标题" />
 
         <TextView
@@ -38,6 +42,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_101010"
             android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_first"
+            app:layout_constraintTop_toBottomOf="@id/tv_first"
             tools:text="标题" />
 
         <TextView
@@ -46,40 +52,42 @@
             android:layout_height="wrap_content"
             android:textColor="@color/color_101010"
             android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/tv_second"
+            app:layout_constraintTop_toBottomOf="@id/tv_second"
             tools:text="标题" />
 
         <View
+            android:id="@+id/view_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/color_FAFAFA" />
+            android:layout_marginTop="5dp"
+            android:background="@color/color_FAFAFA"
+            app:layout_constraintTop_toBottomOf="@id/tv_third" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_used_times"
+            android:layout_width="0dp"
             android:layout_height="30dp"
-            android:gravity="center_vertical">
+            android:gravity="center"
+            android:textColor="@color/color_101010"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/view_line"
+            app:layout_constraintTop_toBottomOf="@id/view_line"
+            tools:text="使用次数：100" />
 
-            <TextView
-                android:id="@+id/tv_used_times"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/color_101010"
-                android:textSize="14sp"
-                tools:text="使用次数：100" />
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:text="删除"
+            android:textColor="@color/color_101010"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_used_times" />
 
-            <TextView
-                android:id="@+id/tv_delete"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:gravity="center"
-                android:paddingEnd="10dp"
-                android:paddingStart="10dp"
-                android:text="删除"
-                android:textColor="@color/color_101010"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

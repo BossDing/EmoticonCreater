@@ -8,26 +8,31 @@
 
     <include layout="@layout/layout_appbar" />
 
-    <LinearLayout
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <RelativeLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/white">
+            android:layout_height="match_parent">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/barrier"
+                app:layout_constraintEnd_toEndOf="@id/et_title"
+                app:layout_constraintStart_toStartOf="@id/et_title"
+                app:layout_constraintTop_toTopOf="@id/et_title" />
 
             <EditText
                 android:id="@+id/et_title"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_centerHorizontal="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@null"
                 android:gravity="center"
                 android:hint="标题"
@@ -37,44 +42,51 @@
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <com.android.emoticoncreater.widget.imageloader.SquareImageView
                 android:id="@+id/iv_picture1"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_below="@+id/et_title"
-                android:layout_toStartOf="@+id/iv_picture2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_add_picture" />
+                android:src="@drawable/ic_add_picture"
+                app:layout_constraintEnd_toStartOf="@id/iv_picture2"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@id/et_title"
+                app:layout_constraintTop_toBottomOf="@id/et_title" />
 
-            <ImageView
+            <com.android.emoticoncreater.widget.imageloader.SquareImageView
                 android:id="@+id/iv_picture2"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_below="@+id/et_title"
-                android:layout_centerHorizontal="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_add_picture" />
+                android:src="@drawable/ic_add_picture"
+                app:layout_constraintBottom_toBottomOf="@id/iv_picture1"
+                app:layout_constraintEnd_toStartOf="@id/iv_picture3"
+                app:layout_constraintStart_toEndOf="@id/iv_picture1"
+                app:layout_constraintTop_toTopOf="@id/iv_picture1" />
 
-            <ImageView
+            <com.android.emoticoncreater.widget.imageloader.SquareImageView
                 android:id="@+id/iv_picture3"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:layout_below="@+id/et_title"
-                android:layout_toEndOf="@+id/iv_picture2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_add_picture" />
+                android:src="@drawable/ic_add_picture"
+                app:layout_constraintBottom_toBottomOf="@id/iv_picture2"
+                app:layout_constraintEnd_toEndOf="@id/et_title"
+                app:layout_constraintStart_toEndOf="@id/iv_picture2"
+                app:layout_constraintTop_toTopOf="@id/iv_picture2" />
 
             <EditText
                 android:id="@+id/et_name1"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_alignEnd="@+id/iv_picture1"
-                android:layout_alignStart="@+id/iv_picture1"
-                android:layout_below="@+id/iv_picture1"
                 android:background="@null"
                 android:gravity="center"
                 android:hint="第一句话"
@@ -84,15 +96,15 @@
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_picture1"
+                app:layout_constraintStart_toStartOf="@id/iv_picture1"
+                app:layout_constraintTop_toBottomOf="@id/iv_picture1" />
 
             <EditText
                 android:id="@+id/et_name2"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_alignEnd="@+id/iv_picture2"
-                android:layout_alignStart="@+id/iv_picture2"
-                android:layout_below="@+id/iv_picture2"
                 android:background="@null"
                 android:gravity="center"
                 android:hint="第二句话"
@@ -102,15 +114,15 @@
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_picture2"
+                app:layout_constraintStart_toStartOf="@id/iv_picture2"
+                app:layout_constraintTop_toBottomOf="@id/iv_picture2" />
 
             <EditText
                 android:id="@+id/et_name3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_alignEnd="@+id/iv_picture3"
-                android:layout_alignStart="@+id/iv_picture3"
-                android:layout_below="@+id/iv_picture3"
                 android:background="@null"
                 android:gravity="center"
                 android:hint="第三句话"
@@ -120,60 +132,79 @@
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_picture3"
+                app:layout_constraintStart_toStartOf="@id/iv_picture3"
+                app:layout_constraintTop_toBottomOf="@id/iv_picture3" />
 
-        </RelativeLayout>
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="et_name1,et_name2,et_name3" />
 
-        <Button
-            android:id="@+id/btn_do_create"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/selector_bg_button_green"
-            android:gravity="center"
-            android:text="生成"
-            android:textColor="@color/white"
-            android:textSize="17sp" />
+            <Button
+                android:id="@+id/btn_do_create"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/selector_bg_button_green"
+                android:gravity="center"
+                android:text="生成"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
 
-        <ImageView
-            android:id="@+id/iv_preview"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:background="@color/white"
-            android:scaleType="fitCenter" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_preview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:layout_constraintDimensionRatio="32:15"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_do_create" />
 
             <Button
                 android:id="@+id/btn_do_save"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/selector_bg_button_green"
                 android:gravity="center"
                 android:text="保存语录"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@id/btn_do_send"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/iv_preview"
+                app:layout_constraintTop_toBottomOf="@id/iv_preview" />
 
             <Button
                 android:id="@+id/btn_do_send"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
                 android:background="@drawable/selector_bg_button_green"
                 android:gravity="center"
                 android:text="发送图片"
                 android:textColor="@color/white"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                app:layout_constraintEnd_toEndOf="@id/iv_preview"
+                app:layout_constraintStart_toEndOf="@id/btn_do_save"
+                app:layout_constraintTop_toTopOf="@id/btn_do_save" />
 
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
 
-    </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -20,6 +20,7 @@ public class MainActivity extends BaseActivity {
     private Button btnSecret;
     private Button btnOneEmoticon;
     private Button btnGif;
+    private Button btnMature;
 
     private PermissionsHelper mPermissionsHelper;
 
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity {
         btnSecret = findViewById(R.id.btn_secret);
         btnOneEmoticon = findViewById(R.id.btn_one_emoticon);
         btnGif = findViewById(R.id.btn_gif);
+        btnMature = findViewById(R.id.btn_mature);
 
         mPermissionsHelper.requestPermissions(this);
     }
@@ -56,12 +58,12 @@ public class MainActivity extends BaseActivity {
         btnSecret.setOnClickListener(mClick);
         btnOneEmoticon.setOnClickListener(mClick);
         btnGif.setOnClickListener(mClick);
+        btnMature.setOnClickListener(mClick);
 
         final String basePath = SDCardUtils.getSDCardDir() + Constants.PATH_BASE;
         if (!FileUtils.createdirectory(basePath)) {
             showSnackbar("创建存储目录失败");
         }
-
     }
 
     @Override
@@ -99,6 +101,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.btn_gif:
                     GifThemeListActivity.show(MainActivity.this);
+                    break;
+                case R.id.btn_mature:
+                    MatureActivity.show(MainActivity.this);
                     break;
             }
         }
