@@ -2,26 +2,31 @@ package com.android.emoticoncreater.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
+import com.android.emoticoncreater.model.FunctionInfo;
+import com.android.emoticoncreater.ui.adapter.FunctionListAdapter;
+import com.android.emoticoncreater.ui.adapter.IOnListClickListener;
+import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 import com.android.emoticoncreater.utils.FastClick;
 import com.android.emoticoncreater.utils.FileUtils;
 import com.android.emoticoncreater.utils.PermissionsHelper;
 import com.android.emoticoncreater.utils.SDCardUtils;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends BaseActivity {
 
-    private Button btnTripleSend;
-    private Button btnSecret;
-    private Button btnOneEmoticon;
-    private Button btnGif;
-    private Button btnMature;
+    private RecyclerView rvFunctionList;
+
+    private List<FunctionInfo> mFunctionList;
+    private FunctionListAdapter mFunctionAdapter;
 
     private PermissionsHelper mPermissionsHelper;
 
@@ -33,6 +38,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
+
+        mFunctionList = FunctionInfo.createList();
+        mFunctionAdapter = new FunctionListAdapter(this, mFunctionList);
 
         mPermissionsHelper = new PermissionsHelper.Builder()
                 .writeExternalStorage()
@@ -46,22 +54,15 @@ public class MainActivity extends BaseActivity {
         super.initView(savedInstanceState);
         setToolbarTitle(R.string.app_name);
 
-        btnTripleSend = findViewById(R.id.btn_triple_send);
-        btnSecret = findViewById(R.id.btn_secret);
-        btnOneEmoticon = findViewById(R.id.btn_one_emoticon);
-        btnGif = findViewById(R.id.btn_gif);
-        btnMature = findViewById(R.id.btn_mature);
+        rvFunctionList = findViewById(R.id.rv_function_list);
+        rvFunctionList.setLayoutManager(new LinearLayoutManager(this));
+        rvFunctionList.setAdapter(mFunctionAdapter);
 
         mPermissionsHelper.requestPermissions(this);
     }
 
     private void setData() {
-        btnTripleSend.setOnClickListener(mClick);
-        btnSecret.setOnClickListener(mClick);
-        btnOneEmoticon.setOnClickListener(mClick);
-        btnGif.setOnClickListener(mClick);
-        btnMature.setOnClickListener(mClick);
-
+        mFunctionAdapter.setListClick(mListClick);
         final String basePath = SDCardUtils.getSDCardDir() + Constants.PATH_BASE;
         if (!FileUtils.createdirectory(basePath)) {
             showSnackbar("创建存储目录失败");
@@ -88,25 +89,28 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    private View.OnClickListener mClick = new View.OnClickListener() {
+    private IOnListClickListener mListClick = new OnListClickListener() {
         @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.btn_triple_send:
+        public void onItemClick(int position) {
+            final FunctionInfo function = mFunctionList.get(position);
+            final String name = function.getName();
+            switch (name) {
+                case FunctionInfo.NAME_TRIPLE_SEND:
                     TripleSendActivity.show(MainActivity.this);
                     break;
-                case R.id.btn_secret:
+                case FunctionInfo.NAME_SECRET:
                     TellTheSecretActivity.show(MainActivity.this);
                     break;
-                case R.id.btn_one_emoticon:
+                case FunctionInfo.NAME_ONE_EMOTICON:
                     OneEmoticonActivity.show(MainActivity.this);
                     break;
-                case R.id.btn_gif:
+                case FunctionInfo.NAME_GIF:
                     GifThemeListActivity.show(MainActivity.this);
                     break;
-                case R.id.btn_mature:
+                case FunctionInfo.NAME_MATURE:
                     MatureActivity.show(MainActivity.this);
                     break;
+
             }
         }
     };
