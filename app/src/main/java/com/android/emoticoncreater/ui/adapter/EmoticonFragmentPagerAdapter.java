@@ -1,7 +1,7 @@
 package com.android.emoticoncreater.ui.adapter;
 
 
-import com.android.emoticoncreater.ui.activity.EmoticonFragment;
+import com.android.emoticoncreater.ui.fragment.EmoticonFragment;
 
 import java.util.ArrayList;
 

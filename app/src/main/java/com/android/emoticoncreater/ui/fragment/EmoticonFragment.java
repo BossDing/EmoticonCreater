@@ -1,4 +1,4 @@
-package com.android.emoticoncreater.ui.activity;
+package com.android.emoticoncreater.ui.fragment;
 
 import android.app.ActivityOptions;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseFragment;
 import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.ui.activity.OneEmoticonEditActivity;
 import com.android.emoticoncreater.ui.adapter.EmoticonListAdapter;
 import com.android.emoticoncreater.ui.adapter.IOnListClickListener;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;

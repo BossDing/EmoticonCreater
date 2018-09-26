@@ -122,7 +122,8 @@ public class OneEmoticonActivity extends BaseActivity {
         vpPicture = findViewById(R.id.vp_picture);
         vpPicture.setAdapter(new EmoticonFragmentPagerAdapter(getSupportFragmentManager(), ImageDataHelper.EMOTICON_TITLES));
 
-        setToolbarScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
+        setToolbarScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
         setTabMode(TabLayout.MODE_SCROLLABLE);
         setupWithViewPager(vpPicture);
     }
