@@ -7,8 +7,6 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +26,12 @@ import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
 
 import java.io.File;
 
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
+
+/**
+ * “你已经很成熟了”功能主界面
+ */
 public class MatureActivity extends BaseActivity {
 
     private static final int REQUEST_CODE_SELECT_PICTURE = 100;

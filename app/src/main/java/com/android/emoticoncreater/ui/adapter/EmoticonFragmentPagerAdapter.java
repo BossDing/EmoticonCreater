@@ -1,15 +1,16 @@
 package com.android.emoticoncreater.ui.adapter;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import com.android.emoticoncreater.ui.activity.EmoticonFragment;
 
 import java.util.ArrayList;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+
 /**
- *  一个表情适配器
+ * 一个表情适配器
  */
 
 public class EmoticonFragmentPagerAdapter extends FragmentPagerAdapter {

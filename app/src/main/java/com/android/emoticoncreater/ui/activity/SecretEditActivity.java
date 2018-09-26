@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +12,9 @@ import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.model.PictureBean;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
+
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * 编辑秘密

@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
 
@@ -14,6 +12,9 @@ import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.model.PictureBean;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 import com.android.emoticoncreater.ui.adapter.SecretPictureListAdapter;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 秘密图片列表

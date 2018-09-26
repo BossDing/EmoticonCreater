@@ -2,9 +2,6 @@ package com.android.emoticoncreater.ui.activity;
 
 import android.app.ActivityOptions;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
 
@@ -15,13 +12,17 @@ import com.android.emoticoncreater.ui.adapter.EmoticonListAdapter;
 import com.android.emoticoncreater.ui.adapter.IOnListClickListener;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * 一个表情 fragment
  */
 
 public class EmoticonFragment extends BaseFragment {
 
-    public static final String ARGUMENT = "argument";
+    private static final String ARGUMENT = "argument";
 
     private RecyclerView rvEmoticonList;
 

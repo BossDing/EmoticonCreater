@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +12,7 @@ import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.utils.ImageUtils;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
 

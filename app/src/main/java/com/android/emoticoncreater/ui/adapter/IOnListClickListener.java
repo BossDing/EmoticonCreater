@@ -1,10 +1,11 @@
 package com.android.emoticoncreater.ui.adapter;
 
-import android.support.annotation.IntDef;
 import android.view.View;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import androidx.annotation.IntDef;
 
 /**
  * adapter 点击回调接口

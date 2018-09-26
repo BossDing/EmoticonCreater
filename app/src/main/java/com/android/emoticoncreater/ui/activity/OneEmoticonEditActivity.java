@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
-import android.support.v7.widget.SwitchCompat;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +24,9 @@ import com.android.emoticoncreater.utils.ThreadPoolUtil;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
 
 import java.io.File;
+
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.SwitchCompat;
 
 public class OneEmoticonEditActivity extends BaseActivity {
 

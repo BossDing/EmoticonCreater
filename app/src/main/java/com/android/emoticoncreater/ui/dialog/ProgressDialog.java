@@ -2,12 +2,13 @@ package com.android.emoticoncreater.ui.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.android.emoticoncreater.R;
+
+import androidx.appcompat.app.AlertDialog;
 
 /**
  * Loading对话框
