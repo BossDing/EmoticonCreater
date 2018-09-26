@@ -2,6 +2,7 @@ package com.android.emoticoncreater.app;
 
 import android.app.Application;
 
+import com.android.emoticoncreater.config.Constants;
 import com.tencent.bugly.crashreport.CrashReport;
 
 /**
@@ -31,6 +32,6 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
 
-        CrashReport.initCrashReport(getApplicationContext(), "06b4b6de0f", false);
+        CrashReport.initCrashReport(getApplicationContext(), Constants.BUGLY_APP_ID, false);
     }
 }
