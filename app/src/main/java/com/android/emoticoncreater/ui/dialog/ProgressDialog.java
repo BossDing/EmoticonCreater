@@ -33,7 +33,7 @@ public class ProgressDialog {
             @Override
             public void onDismiss(DialogInterface dialog) {
                 if (mOnDismissListener != null) {
-                    mOnDismissListener.onDismissListener();
+                    mOnDismissListener.onDismiss();
                 }
             }
         });
@@ -75,6 +75,6 @@ public class ProgressDialog {
     }
 
     public interface OnDismissListener {
-        void onDismissListener();
+        void onDismiss();
     }
 }

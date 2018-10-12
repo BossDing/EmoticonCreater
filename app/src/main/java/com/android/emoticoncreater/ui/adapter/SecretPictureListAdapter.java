@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.utils.ImageDataHelper;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
 
@@ -26,41 +26,41 @@ public class SecretPictureListAdapter extends RecyclerView.Adapter {
 
     private IOnListClickListener mListClick;
     private Context mContext;
-    private List<PictureBean> mList;
+    private List<PictureInfo> mDatas;
     private LayoutInflater mInflater;
 
     public SecretPictureListAdapter(Context context) {
         mContext = context;
-        mList = new ArrayList<>();
+        mDatas = new ArrayList<>();
         mInflater = LayoutInflater.from(context);
 
-        mList.clear();
+        mDatas.clear();
         for (int i = 0; i < ImageDataHelper.SECRET_LIST.length; i++) {
-            final PictureBean secret = new PictureBean();
+            final PictureInfo secret = new PictureInfo();
             secret.setResourceId(ImageDataHelper.SECRET_LIST[i]);
             secret.setTitle(ImageDataHelper.SECRET_TITLES[i]);
-            mList.add(secret);
+            mDatas.add(secret);
         }
     }
 
     @Override
     @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ListViewHolder(mInflater.inflate(R.layout.item_secret_picture_list, parent, false));
+        return new BaseViewHolder(mInflater.inflate(R.layout.item_secret_picture_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        bindItem((ListViewHolder) holder, position);
+        bindItem((BaseViewHolder) holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mDatas.size();
     }
 
-    private void bindItem(ListViewHolder holder, final int position) {
-        final PictureBean model = mList.get(position);
+    private void bindItem(BaseViewHolder holder, final int position) {
+        final PictureInfo model = mDatas.get(position);
         final int resourceId = model.getResourceId();
         final String title = model.getTitle();
 
@@ -71,22 +71,20 @@ public class SecretPictureListAdapter extends RecyclerView.Adapter {
         holder.itemView.setOnClickListener(mClick);
     }
 
-    private class ListViewHolder extends RecyclerView.ViewHolder {
+    public void setListClick(IOnListClickListener listClick) {
+        mListClick = listClick;
+    }
 
-        private View itemView;
+    private class BaseViewHolder extends RecyclerView.ViewHolder {
+
         private AppCompatImageView ivPicture;
         private AppCompatTextView tvTitle;
 
-        private ListViewHolder(View itemView) {
+        private BaseViewHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
             ivPicture = itemView.findViewById(R.id.iv_picture);
             tvTitle = itemView.findViewById(R.id.tv_title);
         }
-    }
-
-    public void setListClick(IOnListClickListener listClick) {
-        mListClick = listClick;
     }
 
     private View.OnClickListener mClick = new View.OnClickListener() {
@@ -94,7 +92,7 @@ public class SecretPictureListAdapter extends RecyclerView.Adapter {
         public void onClick(View v) {
             if (mListClick != null) {
                 final int position = (int) v.getTag();
-                final PictureBean secret = mList.get(position);
+                final PictureInfo secret = mDatas.get(position);
                 mListClick.onItemClick(v, secret);
             }
         }

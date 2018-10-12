@@ -3,8 +3,8 @@
     "id": 1,
     "name": "为所欲为",
     "fileName": "img_weisuoyuwei.gif",
-    "textSize": 18,
-    "maxLength": 12,
+    "textSize": 24,
+    "maxLength": 14,
     "duration": 200,
     "textList": [
       {
@@ -114,7 +114,7 @@
     "id": 3,
     "name": "窃格瓦拉",
     "fileName": "ic_qiegewala.gif",
-    "textSize": 20,
+    "textSize": 24,
     "maxLength": 14,
     "duration": 150,
     "textList": [

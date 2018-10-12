@@ -12,7 +12,7 @@ import android.view.View;
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.ui.adapter.SecretListAdapter;
 import com.android.emoticoncreater.utils.FileUtils;
 import com.android.emoticoncreater.utils.SDCardUtils;
@@ -42,7 +42,7 @@ public class TellTheSecretActivity extends BaseActivity {
     private RecyclerView rvSecretList;
     private FloatingActionButton btnAdd;
 
-    private List<PictureBean> mSecretList;
+    private List<PictureInfo> mSecretList;
     private SecretListAdapter mSecretAdapter;
 
     private LinearLayoutManager mLayoutManager;
@@ -50,7 +50,7 @@ public class TellTheSecretActivity extends BaseActivity {
 
     private String mSavePath;
 
-    public static void showOnNewIntent(Activity activity, PictureBean secret) {
+    public static void showOnNewIntent(Activity activity, PictureInfo secret) {
         Intent intent = new Intent();
         intent.setClass(activity, TellTheSecretActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -104,7 +104,7 @@ public class TellTheSecretActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        final PictureBean secret = intent.getParcelableExtra(KEY_NEW_SECRET);
+        final PictureInfo secret = intent.getParcelableExtra(KEY_NEW_SECRET);
         if (secret != null) {
             final int index = mSecretList.size();
             mSecretList.add(secret);

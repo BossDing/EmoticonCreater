@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 
 import java.util.List;
 
@@ -21,32 +21,32 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SecretListAdapter extends RecyclerView.Adapter {
 
-    private List<PictureBean> mList;
+    private List<PictureInfo> mDatas;
     private LayoutInflater mInflater;
 
-    public SecretListAdapter(Context context, List<PictureBean> list) {
-        mList = list;
+    public SecretListAdapter(Context context, List<PictureInfo> datas) {
+        mDatas = datas;
         mInflater = LayoutInflater.from(context);
     }
 
     @Override
     @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ListViewHolder(mInflater.inflate(R.layout.item_secret_list, parent, false));
+        return new BaseViewHolder(mInflater.inflate(R.layout.item_secret_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        bindItem((ListViewHolder) holder, position);
+        bindItem((BaseViewHolder) holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mDatas.size();
     }
 
-    private void bindItem(ListViewHolder holder, final int position) {
-        final PictureBean model = mList.get(position);
+    private void bindItem(BaseViewHolder holder, final int position) {
+        final PictureInfo model = mDatas.get(position);
         final int resourceId = model.getResourceId();
         final String title = model.getTitle();
 
@@ -54,12 +54,12 @@ public class SecretListAdapter extends RecyclerView.Adapter {
         holder.tvTitle.setText(title);
     }
 
-    private class ListViewHolder extends RecyclerView.ViewHolder {
+    private class BaseViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView ivPicture;
         private TextView tvTitle;
 
-        private ListViewHolder(View itemView) {
+        private BaseViewHolder(View itemView) {
             super(itemView);
             ivPicture = itemView.findViewById(R.id.iv_picture);
             tvTitle = itemView.findViewById(R.id.tv_title);

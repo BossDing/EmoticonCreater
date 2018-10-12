@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.utils.ImageDataHelper;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
 import com.android.emoticoncreater.widget.imageloader.SquareImageView;
@@ -25,13 +25,13 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
 
     private IOnListClickListener mListClick;
     private Context mContext;
-    private List<PictureBean> mList;
+    private List<PictureInfo> mDatas;
     private LayoutInflater mInflater;
 
     public EmoticonListAdapter(Context context, String title) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
-        mList = new ArrayList<>();
+        mDatas = new ArrayList<>();
 
         final int[] pictures;
         if ("熊猫人".equals(title)) {
@@ -42,32 +42,32 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
             pictures = ImageDataHelper.MO_GU_TOU_LIST;
         }
 
-        mList.clear();
+        mDatas.clear();
         for (int picture : pictures) {
-            final PictureBean secret = new PictureBean();
+            final PictureInfo secret = new PictureInfo();
             secret.setResourceId(picture);
-            mList.add(secret);
+            mDatas.add(secret);
         }
     }
 
     @Override
     @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ListViewHolder(mInflater.inflate(R.layout.item_emoticon_list, parent, false));
+        return new BaseViewHolder(mInflater.inflate(R.layout.item_emoticon_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        bindItem((ListViewHolder) holder, position);
+        bindItem((BaseViewHolder) holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mDatas.size();
     }
 
-    private void bindItem(ListViewHolder holder, final int position) {
-        final PictureBean model = mList.get(position);
+    private void bindItem(BaseViewHolder holder, final int position) {
+        final PictureInfo model = mDatas.get(position);
         final int resourceId = model.getResourceId();
 
         ImageLoaderFactory.getLoader().loadImageFitCenter(mContext, holder.ivPicture, resourceId,
@@ -78,20 +78,18 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
 
     }
 
-    private class ListViewHolder extends RecyclerView.ViewHolder {
-
-        private View itemView;
-        private SquareImageView ivPicture;
-
-        private ListViewHolder(View itemView) {
-            super(itemView);
-            this.itemView = itemView;
-            ivPicture = itemView.findViewById(R.id.iv_picture);
-        }
-    }
-
     public void setListClick(IOnListClickListener listClick) {
         mListClick = listClick;
+    }
+
+    private class BaseViewHolder extends RecyclerView.ViewHolder {
+
+        private SquareImageView ivPicture;
+
+        private BaseViewHolder(View itemView) {
+            super(itemView);
+            ivPicture = itemView.findViewById(R.id.iv_picture);
+        }
     }
 
     private View.OnClickListener mClick = new View.OnClickListener() {
@@ -99,7 +97,7 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
         public void onClick(View v) {
             if (mListClick != null) {
                 final int position = (int) v.getTag();
-                final PictureBean secret = mList.get(position);
+                final PictureInfo secret = mDatas.get(position);
                 mListClick.onItemClick(v, secret);
             }
         }

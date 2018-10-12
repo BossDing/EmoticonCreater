@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.ui.adapter.EmoticonFragmentPagerAdapter;
 import com.android.emoticoncreater.utils.DataCleanManager;
 import com.android.emoticoncreater.utils.FileUtils;
@@ -93,7 +93,7 @@ public class OneEmoticonActivity extends BaseActivity {
                 if (mCutePhotoFile != null && mCutePhotoFile.exists()) {
                     final String filePath = mCutePhotoFile.getAbsolutePath();
 
-                    final PictureBean picture = new PictureBean();
+                    final PictureInfo picture = new PictureInfo();
                     picture.setFilePath(filePath);
 
                     OneEmoticonEditActivity.show(this, picture);

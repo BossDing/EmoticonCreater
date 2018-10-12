@@ -14,7 +14,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 
 import java.io.File;
 
@@ -29,7 +29,7 @@ public class OneEmoticonHelper {
     private static final int backgroundColor = 0xffffffff;
     private static final int textColor = 0xff010101;
 
-    public static File create(Resources resources, final PictureBean emoticon,
+    public static File create(Resources resources, final PictureInfo emoticon,
                               final String savePath, final Typeface typeface, boolean isOriginal) {
         final int quality = isOriginal ? 100 : 5;
         final Bitmap.Config config = isOriginal ? Bitmap.Config.ARGB_8888 : Bitmap.Config.ARGB_4444;

@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseFragment;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.ui.activity.OneEmoticonEditActivity;
 import com.android.emoticoncreater.ui.adapter.EmoticonListAdapter;
 import com.android.emoticoncreater.ui.adapter.IOnListClickListener;
@@ -69,8 +69,8 @@ public class EmoticonFragment extends BaseFragment {
     private IOnListClickListener mListClick = new OnListClickListener() {
         @Override
         public void onItemClick(View view, Object object) {
-            if (object instanceof PictureBean) {
-                final PictureBean picture = (PictureBean) object;
+            if (object instanceof PictureInfo) {
+                final PictureInfo picture = (PictureInfo) object;
 
                 final View image = view.findViewById(R.id.iv_picture);
 

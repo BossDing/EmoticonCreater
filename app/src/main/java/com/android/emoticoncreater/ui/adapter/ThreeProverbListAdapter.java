@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.model.ThreeProverbBean;
+import com.android.emoticoncreater.model.ThreeProverbInfo;
 
 import java.util.List;
 
@@ -21,32 +21,32 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ThreeProverbListAdapter extends RecyclerView.Adapter {
 
     private IOnListClickListener mListClick;
-    private List<ThreeProverbBean> mList;
+    private List<ThreeProverbInfo> mDatas;
     private LayoutInflater mInflater;
 
-    public ThreeProverbListAdapter(Context context, List<ThreeProverbBean> list) {
-        mList = list;
+    public ThreeProverbListAdapter(Context context, List<ThreeProverbInfo> datas) {
+        mDatas = datas;
         mInflater = LayoutInflater.from(context);
     }
 
     @Override
     @NonNull
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ListViewHolder(mInflater.inflate(R.layout.item_three_proverb_list, parent, false));
+        return new BaseViewHolder(mInflater.inflate(R.layout.item_three_proverb_list, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        bindItem((ListViewHolder) holder, position);
+        bindItem((BaseViewHolder) holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        return mDatas.size();
     }
 
-    private void bindItem(ListViewHolder holder, final int position) {
-        final ThreeProverbBean model = mList.get(position);
+    private void bindItem(BaseViewHolder holder, final int position) {
+        final ThreeProverbInfo model = mDatas.get(position);
         final String title = model.getTitle();
         final String first = model.getFirstProverb();
         final String second = model.getSecondProverb();
@@ -66,9 +66,12 @@ public class ThreeProverbListAdapter extends RecyclerView.Adapter {
         holder.tvDelete.setOnClickListener(mClick);
     }
 
-    private class ListViewHolder extends RecyclerView.ViewHolder {
+    public void setListClick(IOnListClickListener listClick) {
+        this.mListClick = listClick;
+    }
 
-        private View itemView;
+    private class BaseViewHolder extends RecyclerView.ViewHolder {
+
         private TextView tvTitle;
         private TextView tvFirst;
         private TextView tvSecond;
@@ -76,9 +79,8 @@ public class ThreeProverbListAdapter extends RecyclerView.Adapter {
         private TextView tvUsedTimes;
         private TextView tvDelete;
 
-        private ListViewHolder(View itemView) {
+        private BaseViewHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvFirst = itemView.findViewById(R.id.tv_first);
             tvSecond = itemView.findViewById(R.id.tv_second);
@@ -86,10 +88,6 @@ public class ThreeProverbListAdapter extends RecyclerView.Adapter {
             tvUsedTimes = itemView.findViewById(R.id.tv_used_times);
             tvDelete = itemView.findViewById(R.id.tv_delete);
         }
-    }
-
-    public void setListClick(IOnListClickListener listClick) {
-        this.mListClick = listClick;
     }
 
     private View.OnClickListener mClick = new View.OnClickListener() {

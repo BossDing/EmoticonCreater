@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * 图片
  */
 
-public class PictureBean implements Parcelable {
+public class PictureInfo implements Parcelable {
 
     private int resourceId;
     private String title;
@@ -49,24 +49,24 @@ public class PictureBean implements Parcelable {
         dest.writeString(this.filePath);
     }
 
-    public PictureBean() {
+    public PictureInfo() {
     }
 
-    protected PictureBean(Parcel in) {
+    protected PictureInfo(Parcel in) {
         this.resourceId = in.readInt();
         this.title = in.readString();
         this.filePath = in.readString();
     }
 
-    public static final Creator<PictureBean> CREATOR = new Creator<PictureBean>() {
+    public static final Creator<PictureInfo> CREATOR = new Creator<PictureInfo>() {
         @Override
-        public PictureBean createFromParcel(Parcel source) {
-            return new PictureBean(source);
+        public PictureInfo createFromParcel(Parcel source) {
+            return new PictureInfo(source);
         }
 
         @Override
-        public PictureBean[] newArray(int size) {
-            return new PictureBean[size];
+        public PictureInfo[] newArray(int size) {
+            return new PictureInfo[size];
         }
     };
 }

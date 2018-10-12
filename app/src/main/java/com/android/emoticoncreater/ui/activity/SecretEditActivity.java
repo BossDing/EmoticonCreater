@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.widget.imageloader.ImageLoaderFactory;
 
 import androidx.appcompat.widget.AppCompatEditText;
@@ -27,9 +27,9 @@ public class SecretEditActivity extends BaseActivity {
     private AppCompatImageView ivPicture;
     private AppCompatEditText etTitle;
 
-    private PictureBean mSecret;
+    private PictureInfo mSecret;
 
-    public static void show(Activity activity, ActivityOptions options, PictureBean secret) {
+    public static void show(Activity activity, ActivityOptions options, PictureInfo secret) {
         Intent intent = new Intent();
         intent.setClass(activity, SecretEditActivity.class);
         intent.putExtra(KEY_SECRET, secret);
@@ -39,12 +39,6 @@ public class SecretEditActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         return R.layout.activity_secret_edit;
-    }
-
-    @Override
-    public void onBackPressed() {
-        hideKeyboard();
-        super.onBackPressed();
     }
 
     @Override

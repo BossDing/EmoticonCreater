@@ -9,7 +9,7 @@ import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
 import com.android.emoticoncreater.db.LiteOrmHelper;
-import com.android.emoticoncreater.model.ThreeProverbBean;
+import com.android.emoticoncreater.model.ThreeProverbInfo;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 import com.android.emoticoncreater.ui.adapter.ThreeProverbListAdapter;
 import com.android.emoticoncreater.ui.dialog.AlertDialogFragment;
@@ -30,7 +30,7 @@ public class ThreeProverbListActivity extends BaseActivity {
 
     private AlertDialogFragment mAlertDialog;
 
-    private List<ThreeProverbBean> mProverbList;
+    private List<ThreeProverbInfo> mProverbList;
     private ThreeProverbListAdapter mProverbAdapter;
 
     private LiteOrmHelper mDBHelper;
@@ -87,7 +87,7 @@ public class ThreeProverbListActivity extends BaseActivity {
         mAlertDialog.setConfirmButton("删除", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final ThreeProverbBean proverb = mProverbList.get(position);
+                final ThreeProverbInfo proverb = mProverbList.get(position);
                 mDBHelper.delete(proverb);
                 final int count = mProverbList.size();
                 if (position < count) {
@@ -104,7 +104,7 @@ public class ThreeProverbListActivity extends BaseActivity {
     }
 
     private void getProverbList() {
-        final List<ThreeProverbBean> proverbList = mDBHelper.queryAllOrderDescBy(ThreeProverbBean.class, "useTimes");
+        final List<ThreeProverbInfo> proverbList = mDBHelper.queryAllOrderDescBy(ThreeProverbInfo.class, "useTimes");
         mProverbList.clear();
         if (proverbList != null) {
             mProverbList.addAll(proverbList);
@@ -119,7 +119,7 @@ public class ThreeProverbListActivity extends BaseActivity {
     private OnListClickListener mListClick = new OnListClickListener() {
         @Override
         public void onItemClick(int position) {
-            final ThreeProverbBean proverb = mProverbList.get(position);
+            final ThreeProverbInfo proverb = mProverbList.get(position);
             Intent intent = new Intent();
             intent.putExtra(Constants.KEY_RETURN_DATA, proverb);
             setResult(RESULT_OK, intent);

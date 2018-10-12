@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.utils.FileUtils;
 import com.android.emoticoncreater.utils.OneEmoticonHelper;
 import com.android.emoticoncreater.utils.SDCardUtils;
@@ -37,17 +37,17 @@ public class OneEmoticonEditActivity extends BaseActivity {
     private TextView tvQuality;
     private SwitchCompat swQuality;
 
-    private PictureBean mPicture;
+    private PictureInfo mPicture;
     private String mSavePath;
 
-    public static void show(Activity activity, PictureBean picture) {
+    public static void show(Activity activity, PictureInfo picture) {
         Intent intent = new Intent();
         intent.setClass(activity, OneEmoticonEditActivity.class);
         intent.putExtra(KEY_ONE_EMOTICON, picture);
         activity.startActivity(intent);
     }
 
-    public static void show(Activity activity, ActivityOptions options, PictureBean picture) {
+    public static void show(Activity activity, ActivityOptions options, PictureInfo picture) {
         Intent intent = new Intent();
         intent.setClass(activity, OneEmoticonEditActivity.class);
         intent.putExtra(KEY_ONE_EMOTICON, picture);
@@ -57,12 +57,6 @@ public class OneEmoticonEditActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         return R.layout.activity_one_emoticon_edit;
-    }
-
-    @Override
-    public void onBackPressed() {
-        hideKeyboard();
-        super.onBackPressed();
     }
 
     @Override
@@ -87,13 +81,6 @@ public class OneEmoticonEditActivity extends BaseActivity {
         etTitle = findViewById(R.id.et_title);
         tvQuality = findViewById(R.id.tv_quality);
         swQuality = findViewById(R.id.sw_quality);
-
-//        etTitle.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                return event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER;
-//            }
-//        });
 
         swQuality.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

@@ -19,7 +19,7 @@ import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
 import com.android.emoticoncreater.config.Constants;
 import com.android.emoticoncreater.db.LiteOrmHelper;
-import com.android.emoticoncreater.model.ThreeProverbBean;
+import com.android.emoticoncreater.model.ThreeProverbInfo;
 import com.android.emoticoncreater.utils.DataCleanManager;
 import com.android.emoticoncreater.utils.FileUtils;
 import com.android.emoticoncreater.utils.ImageUtils;
@@ -131,7 +131,7 @@ public class TripleSendActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (REQUEST_CODE_TO_PROVERB == requestCode) {
-                final ThreeProverbBean proverb = data.getParcelableExtra(Constants.KEY_RETURN_DATA);
+                final ThreeProverbInfo proverb = data.getParcelableExtra(Constants.KEY_RETURN_DATA);
                 if (proverb != null) {
                     etTitle.setText(proverb.getTitle());
                     etName1.setText(proverb.getFirstProverb());
@@ -306,7 +306,7 @@ public class TripleSendActivity extends BaseActivity {
     }
 
     private void doStatistics(String title, String name1, String name2, String name3) {
-        final ThreeProverbBean proverb = mDBHelper.queryFirst(ThreeProverbBean.class,
+        final ThreeProverbInfo proverb = mDBHelper.queryFirst(ThreeProverbInfo.class,
                 "title == ? and firstProverb == ? and secondProverb == ? and thirdProverb == ?",
                 title, name1, name2, name3);
         if (proverb != null) {
@@ -329,11 +329,11 @@ public class TripleSendActivity extends BaseActivity {
         } else if (TextUtils.isEmpty(name3)) {
             showSnackbar("请输入图片3文字内容");
         } else {
-            ThreeProverbBean proverb = mDBHelper.queryFirst(ThreeProverbBean.class,
+            ThreeProverbInfo proverb = mDBHelper.queryFirst(ThreeProverbInfo.class,
                     "title == ? and firstProverb == ? and secondProverb == ? and thirdProverb == ?",
                     title, name1, name2, name3);
             if (proverb == null) {
-                proverb = new ThreeProverbBean();
+                proverb = new ThreeProverbInfo();
                 proverb.setTitle(title);
                 proverb.setFirstProverb(name1);
                 proverb.setSecondProverb(name2);

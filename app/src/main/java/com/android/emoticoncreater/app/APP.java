@@ -11,26 +11,17 @@ import com.tencent.bugly.crashreport.CrashReport;
 
 public class APP extends Application {
 
-    private static APP INStANCE;
-
-    public APP() {
-        INStANCE = this;
-    }
+    private static APP INStANCE = null;
 
     public static APP getInstance() {
-        if (INStANCE == null) {
-            synchronized (APP.class) {
-                if (INStANCE == null) {
-                    INStANCE = new APP();
-                }
-            }
-        }
         return INStANCE;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        INStANCE = this;
 
         CrashReport.initCrashReport(getApplicationContext(), Constants.BUGLY_APP_ID, false);
     }

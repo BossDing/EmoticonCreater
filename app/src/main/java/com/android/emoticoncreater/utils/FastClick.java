@@ -11,7 +11,7 @@ public class FastClick {
     //快速点击控制
     public synchronized static boolean isFastClick() {
         long time = System.currentTimeMillis();
-        if ( time - lastClickTime < 500) {
+        if (time - lastClickTime < 500) {
             return true;
         }
         lastClickTime = time;
@@ -21,7 +21,7 @@ public class FastClick {
     //退出点击控制
     public synchronized static boolean isExitClick() {
         long time = System.currentTimeMillis();
-        if ( time - exitClickTime < 2000) {
+        if (time - exitClickTime < 2000) {
             return true;
         }
         exitClickTime = time;

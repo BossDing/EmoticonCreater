@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 import com.android.emoticoncreater.ui.adapter.SecretPictureListAdapter;
 
@@ -62,8 +62,8 @@ public class SecretListActivity extends BaseActivity {
     private OnListClickListener mListClick = new OnListClickListener() {
         @Override
         public void onItemClick(View view, Object object) {
-            if (object instanceof PictureBean) {
-                final PictureBean secret = (PictureBean) object;
+            if (object instanceof PictureInfo) {
+                final PictureInfo secret = (PictureInfo) object;
                 Pair<View, String> picturePair = Pair.create(view, getString(R.string.transition_name_secret));
 
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SecretListActivity.this, picturePair);

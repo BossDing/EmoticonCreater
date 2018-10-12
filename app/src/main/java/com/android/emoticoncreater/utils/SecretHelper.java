@@ -13,7 +13,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 
-import com.android.emoticoncreater.model.PictureBean;
+import com.android.emoticoncreater.model.PictureInfo;
 
 import java.io.File;
 import java.util.List;
@@ -31,13 +31,13 @@ public class SecretHelper {
     private static final int backgroundColor = 0xffffffff;
     private static final int textColor = 0xff010101;
 
-    public static File createSecret(Resources resources, final List<PictureBean> secretList,
+    public static File createSecret(Resources resources, final List<PictureInfo> secretList,
                                     final String savePath, final Typeface typeface) {
         final TextPaint textPaint = createTextPaint(typeface);
 
         final int totalWidth = padding + pictureWidth + padding;
         int totalHeight = 0;
-        for (PictureBean secret : secretList) {
+        for (PictureInfo secret : secretList) {
             final String text = secret.getTitle();
             final StaticLayout currentLayout = new StaticLayout(text, textPaint, pictureWidth,
                     Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
@@ -56,7 +56,7 @@ public class SecretHelper {
         canvas.drawRect(background, backgroundPatnt);
 
         totalHeight = 0;
-        for (PictureBean secret : secretList) {
+        for (PictureInfo secret : secretList) {
             final String text = secret.getTitle();
             final StaticLayout currentLayout = new StaticLayout(text, textPaint, pictureWidth,
                     Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);

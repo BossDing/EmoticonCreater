@@ -61,8 +61,8 @@ public class TripleSendHelper {
         canvas.drawRect(background, paint);
 
         final int left1 = padding;
-        final int left2 = pictureWidth + padding * 2;
-        final int left3 = (pictureWidth + padding) * 2 + padding;
+        final int left2 = left1 + pictureWidth + padding;
+        final int left3 = left2 + pictureWidth + padding;
 
         final boolean ignoreSecond = path1.equals(path2);
         final boolean ignoreThird = path1.equals(path3);
@@ -143,8 +143,8 @@ public class TripleSendHelper {
         final Rect nameRect = new Rect();
         paint.getTextBounds(text, 0, text.length(), nameRect);
         final float nameTop = textHeight + pictureHeight + (textHeight - textSize) / 2f - nameRect.top;
-        final float nameLeft1 = (pictureWidth - nameRect.right) / 2f + left;
-        canvas.drawText(text, nameLeft1, nameTop, paint);
+        final float nameLeft = (pictureWidth - nameRect.right) / 2f + left;
+        canvas.drawText(text, nameLeft, nameTop, paint);
     }
 
     private Bitmap getBitmapByFilePath(String path) {
@@ -157,8 +157,8 @@ public class TripleSendHelper {
         final int bitmapHeight = bitmap.getHeight();
 
         if (bitmapWidth < pictureWidth || bitmapHeight < pictureHeight) {
-            float scaleWidth = ((float) pictureWidth) / bitmapWidth;
-            float scaleHeight = ((float) pictureHeight) / bitmapHeight;
+            final float scaleWidth = ((float) pictureWidth) / bitmapWidth;
+            final float scaleHeight = ((float) pictureHeight) / bitmapHeight;
 
             Matrix matrix = new Matrix();
             matrix.postScale(scaleWidth, scaleHeight);

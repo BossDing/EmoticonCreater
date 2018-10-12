@@ -12,7 +12,7 @@ import com.litesuits.orm.db.enums.AssignType;
  */
 
 @Table("ThreeProverb")
-public class ThreeProverbBean implements Parcelable{
+public class ThreeProverbInfo implements Parcelable{
 
     @PrimaryKey(AssignType.AUTO_INCREMENT)
     private long id;
@@ -85,10 +85,10 @@ public class ThreeProverbBean implements Parcelable{
         dest.writeLong(this.useTimes);
     }
 
-    public ThreeProverbBean() {
+    public ThreeProverbInfo() {
     }
 
-    protected ThreeProverbBean(Parcel in) {
+    protected ThreeProverbInfo(Parcel in) {
         this.id = in.readLong();
         this.title = in.readString();
         this.firstProverb = in.readString();
@@ -97,15 +97,15 @@ public class ThreeProverbBean implements Parcelable{
         this.useTimes = in.readLong();
     }
 
-    public static final Creator<ThreeProverbBean> CREATOR = new Creator<ThreeProverbBean>() {
+    public static final Creator<ThreeProverbInfo> CREATOR = new Creator<ThreeProverbInfo>() {
         @Override
-        public ThreeProverbBean createFromParcel(Parcel source) {
-            return new ThreeProverbBean(source);
+        public ThreeProverbInfo createFromParcel(Parcel source) {
+            return new ThreeProverbInfo(source);
         }
 
         @Override
-        public ThreeProverbBean[] newArray(int size) {
-            return new ThreeProverbBean[size];
+        public ThreeProverbInfo[] newArray(int size) {
+            return new ThreeProverbInfo[size];
         }
     };
 }

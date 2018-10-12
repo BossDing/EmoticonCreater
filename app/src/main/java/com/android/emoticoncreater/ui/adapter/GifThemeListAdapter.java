@@ -53,6 +53,10 @@ public class GifThemeListAdapter extends RecyclerView.Adapter {
         holder.btnTheme.setOnClickListener(mClick);
     }
 
+    public void setListClick(IOnListClickListener listClick) {
+        this.mListClick = listClick;
+    }
+
     private class BaseViewHolder extends RecyclerView.ViewHolder {
 
         private Button btnTheme;
@@ -61,10 +65,6 @@ public class GifThemeListAdapter extends RecyclerView.Adapter {
             super(itemView);
             btnTheme = itemView.findViewById(R.id.btn_theme);
         }
-    }
-
-    public void setListClick(IOnListClickListener listClick) {
-        this.mListClick = listClick;
     }
 
     private View.OnClickListener mClick = new View.OnClickListener() {
