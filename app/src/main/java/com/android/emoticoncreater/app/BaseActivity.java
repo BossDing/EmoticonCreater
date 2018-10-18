@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.emoticoncreater.R;
-import com.android.emoticoncreater.ui.dialog.ProgressDialog;
+import com.android.emoticoncreater.widget.dialog.ProgressDialog;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;

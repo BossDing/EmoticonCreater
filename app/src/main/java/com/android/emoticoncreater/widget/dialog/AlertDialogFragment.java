@@ -1,4 +1,4 @@
-package com.android.emoticoncreater.ui.dialog;
+package com.android.emoticoncreater.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;

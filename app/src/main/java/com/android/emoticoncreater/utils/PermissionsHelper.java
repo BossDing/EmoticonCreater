@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 
 import com.android.emoticoncreater.app.APP;
-import com.android.emoticoncreater.ui.dialog.AlertDialogFragment;
+import com.android.emoticoncreater.widget.dialog.AlertDialogFragment;
 
 import java.io.File;
 import java.util.ArrayList;

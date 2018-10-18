@@ -12,7 +12,7 @@ import com.android.emoticoncreater.db.LiteOrmHelper;
 import com.android.emoticoncreater.model.ThreeProverbInfo;
 import com.android.emoticoncreater.ui.adapter.OnListClickListener;
 import com.android.emoticoncreater.ui.adapter.ThreeProverbListAdapter;
-import com.android.emoticoncreater.ui.dialog.AlertDialogFragment;
+import com.android.emoticoncreater.widget.dialog.AlertDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
