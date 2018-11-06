@@ -7,10 +7,12 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.android.emoticoncreater.R;
@@ -36,6 +38,8 @@ public class OneEmoticonEditActivity extends BaseActivity {
     private AppCompatEditText etTitle;
     private TextView tvQuality;
     private SwitchCompat swQuality;
+    private TextView tvTextSize;
+    private SeekBar sbTextSize;
 
     private PictureInfo mPicture;
     private String mSavePath;
@@ -81,14 +85,13 @@ public class OneEmoticonEditActivity extends BaseActivity {
         etTitle = findViewById(R.id.et_title);
         tvQuality = findViewById(R.id.tv_quality);
         swQuality = findViewById(R.id.sw_quality);
+        tvTextSize = findViewById(R.id.tv_text_size);
+        sbTextSize = findViewById(R.id.sb_text_size);
 
-        swQuality.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                tvQuality.setText(isChecked ? "HD画质" : "AV画质");
-            }
-        });
+        swQuality.setOnCheckedChangeListener(mCheckChange);
         swQuality.setChecked(true);
+
+        sbTextSize.setOnSeekBarChangeListener(mSeekBarChange);
 
         if (mPicture != null) {
             final String filePath = mPicture.getFilePath();
@@ -102,6 +105,13 @@ public class OneEmoticonEditActivity extends BaseActivity {
 
             ivPicture.setImageResource(resourceId);
         }
+
+        ivPicture.post(new Runnable() {
+            @Override
+            public void run() {
+                setTextSize(0);
+            }
+        });
     }
 
     @Override
@@ -117,6 +127,16 @@ public class OneEmoticonEditActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_confirm_create, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private void setTextSize(int progress) {
+        final int picutreWidth = ivPicture.getWidth();
+        final float scale = picutreWidth / 300f;
+
+        final int textSizePx = progress + 30;
+        final String textSize = "字体:" + textSizePx;
+        tvTextSize.setText(textSize);
+        etTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx * scale);
     }
 
     private void doCreate() {
@@ -135,8 +155,18 @@ public class OneEmoticonEditActivity extends BaseActivity {
             @Override
             public void run() {
                 final boolean isOriginal = swQuality.isChecked();
+                final int textSizePx = sbTextSize.getProgress() * 2 + 30;
                 final Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/bold.ttf");
-                final File imageFile = OneEmoticonHelper.create(getResources(), mPicture, mSavePath, typeface, isOriginal);
+
+                final OneEmoticonHelper helper = new OneEmoticonHelper.Builder(getResources())
+                        .pictureInfo(mPicture)
+                        .savePath(mSavePath)
+                        .typeFace(typeface)
+                        .isOriginal(isOriginal)
+                        .textSize(textSizePx)
+                        .bulid();
+
+                final File imageFile = helper.create();
 
                 runOnUiThread(new Runnable() {
                     @Override
@@ -157,4 +187,32 @@ public class OneEmoticonEditActivity extends BaseActivity {
             }
         });
     }
+
+    private CompoundButton.OnCheckedChangeListener mCheckChange = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            final int id = buttonView.getId();
+            if (R.id.sw_quality == id) {
+                tvQuality.setText(isChecked ? "HD画质" : "AV画质");
+            }
+        }
+    };
+
+    private SeekBar.OnSeekBarChangeListener mSeekBarChange = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            progress *= 2;
+            setTextSize(progress);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
 }

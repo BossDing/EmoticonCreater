@@ -26,7 +26,6 @@
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="3dp"
                 app:cardElevation="6dp"
-                app:contentPadding="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -39,31 +38,38 @@
                         android:id="@+id/iv_picture"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
                         android:transitionName="@string/transition_name_one_emoticon"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription"
                         tools:scaleType="fitCenter"
                         tools:src="@raw/img_xiongmaoren42" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
                         android:background="@null"
                         android:gravity="center"
-                        android:hint="填写表情文字"
+                        android:hint="文字内容"
                         android:imeOptions="actionDone"
+                        android:includeFontPadding="false"
                         android:inputType="textMultiLine"
                         android:maxLength="100"
+                        android:padding="0dp"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/iv_picture"
+                        app:layout_constraintStart_toStartOf="@id/iv_picture"
                         app:layout_constraintTop_toBottomOf="@id/iv_picture" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -74,12 +80,10 @@
                 android:id="@+id/tv_quality"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/cv_emoticon"
                 app:layout_constraintTop_toBottomOf="@id/cv_emoticon"
                 tools:text="HD画质" />
@@ -92,6 +96,31 @@
                 app:layout_constraintStart_toEndOf="@id/tv_quality"
                 app:layout_constraintTop_toTopOf="@id/tv_quality"
                 tools:checked="true" />
+
+            <TextView
+                android:id="@+id/tv_text_size"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/cv_emoticon"
+                app:layout_constraintTop_toBottomOf="@id/tv_quality"
+                tools:text="字体30" />
+
+            <SeekBar
+                android:id="@+id/sb_text_size"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:max="15"
+                app:layout_constraintBottom_toBottomOf="@id/tv_text_size"
+                app:layout_constraintEnd_toEndOf="@id/cv_emoticon"
+                app:layout_constraintStart_toEndOf="@id/tv_text_size"
+                app:layout_constraintTop_toTopOf="@id/tv_text_size" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
