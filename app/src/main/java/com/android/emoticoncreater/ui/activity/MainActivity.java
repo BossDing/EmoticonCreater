@@ -110,6 +110,9 @@ public class MainActivity extends BaseActivity {
                 case FunctionInfo.NAME_MATURE:
                     MatureActivity.show(MainActivity.this);
                     break;
+                case FunctionInfo.NAME_ALL_WICKED:
+                    AllWickedActivity.show(MainActivity.this);
+                    break;
 
             }
         }

@@ -55,7 +55,6 @@ public class SecretHelper {
         final Canvas canvas = new Canvas(picture);
         canvas.drawRect(background, backgroundPatnt);
 
-        totalHeight = 0;
         for (PictureInfo secret : secretList) {
             final String text = secret.getTitle();
             final StaticLayout currentLayout = new StaticLayout(text, textPaint, pictureWidth,
@@ -63,19 +62,11 @@ public class SecretHelper {
 
             final int resourceId = secret.getResourceId();
 
-            totalHeight += padding;
-
             canvas.translate(0, padding);
             drawBitmap(resources, canvas, resourceId);
 
-            totalHeight += pictureHeight;
-            totalHeight += padding;
-
             canvas.translate(totalWidth / 2, pictureHeight + padding);
             currentLayout.draw(canvas);
-
-            totalHeight += currentLayout.getHeight();
-            totalHeight += padding;
 
             canvas.translate(-totalWidth / 2, currentLayout.getHeight() + padding);
         }
@@ -131,17 +122,5 @@ public class SecretHelper {
         }
 
         return bitmap;
-    }
-
-    private static int getTextHeight(Paint paint, String text) {
-        final Rect textRect = new Rect();
-        paint.getTextBounds(text, 0, text.length(), textRect);
-        final int textWidth = textRect.right;
-        final int maxTextWidth = pictureWidth - padding * 2;
-        if (textWidth <= maxTextWidth) {
-            return textSize;
-        } else {
-            return 2 * textSize + padding / 2;
-        }
     }
 }

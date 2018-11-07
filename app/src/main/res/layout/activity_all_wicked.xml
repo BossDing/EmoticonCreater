@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_FAFAFA">
+
+    <include layout="@layout/layout_appbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/tv_description_tips"
+            android:layout_width="88dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical|end"
+            android:text="描述:"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_descritption"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="此时一位酷安大佬高调经过"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_description_tips"
+            app:layout_constraintTop_toTopOf="@id/tv_description_tips" />
+
+        <TextView
+            android:id="@+id/tv_a_clothes_text_tips"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|end"
+            android:text="A衣服文字:"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_description_tips"
+            app:layout_constraintStart_toStartOf="@id/tv_description_tips"
+            app:layout_constraintTop_toBottomOf="@id/tv_description_tips" />
+
+        <EditText
+            android:id="@+id/et_a_clothes_text"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:hint="酷安大佬"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/et_descritption"
+            app:layout_constraintStart_toEndOf="@id/tv_a_clothes_text_tips"
+            app:layout_constraintTop_toTopOf="@id/tv_a_clothes_text_tips" />
+
+        <TextView
+            android:id="@+id/tv_b_clothes_word_tips"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|end"
+            android:text="B衣服文字:"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_a_clothes_text_tips"
+            app:layout_constraintStart_toStartOf="@id/tv_a_clothes_text_tips"
+            app:layout_constraintTop_toBottomOf="@id/tv_a_clothes_text_tips" />
+
+        <EditText
+            android:id="@+id/et_b_clothes_word"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:hint="佬"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="2"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/et_a_clothes_text"
+            app:layout_constraintStart_toEndOf="@id/tv_b_clothes_word_tips"
+            app:layout_constraintTop_toTopOf="@id/tv_b_clothes_word_tips" />
+
+        <TextView
+            android:id="@+id/tv_a_ask_tips"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|end"
+            android:text="A搭讪:"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_b_clothes_word_tips"
+            app:layout_constraintStart_toStartOf="@id/tv_b_clothes_word_tips"
+            app:layout_constraintTop_toBottomOf="@id/tv_b_clothes_word_tips" />
+
+        <EditText
+            android:id="@+id/et_a_ask"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:hint="小伙子，想不到你也是酷安的大佬"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/et_a_clothes_text"
+            app:layout_constraintStart_toEndOf="@id/tv_a_ask_tips"
+            app:layout_constraintTop_toTopOf="@id/tv_a_ask_tips" />
+
+        <TextView
+            android:id="@+id/tv_b_reply_tips"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|end"
+            android:text="B回答:"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_a_ask_tips"
+            app:layout_constraintStart_toStartOf="@id/tv_a_ask_tips"
+            app:layout_constraintTop_toBottomOf="@id/tv_a_ask_tips" />
+
+        <EditText
+            android:id="@+id/et_b_reply"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:hint="大佬？什么大佬？你今晚约不约啊？"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/et_a_ask"
+            app:layout_constraintStart_toEndOf="@id/tv_b_reply_tips"
+            app:layout_constraintTop_toTopOf="@id/tv_b_reply_tips" />
+
+        <TextView
+            android:id="@+id/tv_b_clothes_text_tips"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|end"
+            android:text="B衣服文字:"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_b_reply_tips"
+            app:layout_constraintStart_toStartOf="@id/tv_b_reply_tips"
+            app:layout_constraintTop_toBottomOf="@id/tv_b_reply_tips" />
+
+        <EditText
+            android:id="@+id/et_b_clothes_text"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:hint="酷安基佬"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="8"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/et_b_reply"
+            app:layout_constraintStart_toEndOf="@id/tv_b_clothes_text_tips"
+            app:layout_constraintTop_toTopOf="@id/tv_b_clothes_text_tips" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

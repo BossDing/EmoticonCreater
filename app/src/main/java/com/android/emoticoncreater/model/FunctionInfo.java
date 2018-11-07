@@ -13,6 +13,7 @@ public class FunctionInfo {
     public static final String NAME_ONE_EMOTICON = "一个表情";
     public static final String NAME_GIF = "GIF";
     public static final String NAME_MATURE = "你已经很成熟了";
+    public static final String NAME_ALL_WICKED = "全员恶人";
 
     private String resourceId;//功能图标Id
     private String name;//功能名称
@@ -28,6 +29,7 @@ public class FunctionInfo {
         functionList.add(new FunctionInfo(NAME_ONE_EMOTICON));
         functionList.add(new FunctionInfo(NAME_GIF));
         functionList.add(new FunctionInfo(NAME_MATURE));
+        functionList.add(new FunctionInfo(NAME_ALL_WICKED));
         return functionList;
     }
 

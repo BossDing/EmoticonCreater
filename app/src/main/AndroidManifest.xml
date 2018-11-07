@@ -74,6 +74,9 @@
         <activity
             android:name=".ui.activity.MatureActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.AllWickedActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
