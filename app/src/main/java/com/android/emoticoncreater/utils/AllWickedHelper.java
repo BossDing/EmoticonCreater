@@ -76,7 +76,7 @@ public class AllWickedHelper {
         mTypeFace = builder.typeFace;
     }
 
-    public File createList() {
+    public File create() {
         final TextPaint textPaint = createTextPaint(mTypeFace, DESCRIPTION_TEXT_SIZE, TEXT_COLOR);
         final int textWidth = PICTURE_WIDTH - TEXT_PADDING * 2;
         final StaticLayout descriptionLayout = new StaticLayout(mDescription, textPaint, textWidth,
@@ -165,6 +165,7 @@ public class AllWickedHelper {
 
         final StaticLayout bClothesLayout = new StaticLayout(mBClothesText, clothesTextPaint, CLOTHES_TEXT_WIDTH,
                 Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
+
         canvas.translate(FORTH_CLOTHES_TEXT_CENTER, FORTH_CLOTHES_TEXT_TOP);
         bClothesLayout.draw(canvas);
     }

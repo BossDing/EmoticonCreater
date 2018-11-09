@@ -125,7 +125,7 @@ public class AllWickedActivity extends BaseActivity {
                         .typeFace(typeface)
                         .bulid();
 
-                final File imageFile = helper.createList();
+                final File imageFile = helper.create();
 
                 runOnUiThread(new Runnable() {
                     @Override
