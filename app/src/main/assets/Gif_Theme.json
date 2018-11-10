@@ -154,5 +154,43 @@
         "endFrame": 84
       }
     ]
+  },
+  {
+    "id": 4,
+    "name": "吔屎啦你",
+    "fileName": "ic_yeshilani.gif",
+    "textSize": 28,
+    "maxLength": 14,
+    "duration": 150,
+    "textList": [
+      {
+        "id": 1,
+        "hint": "穿西装打太",
+        "text": "",
+        "startFrame": 24,
+        "endFrame": 40
+      },
+      {
+        "id": 2,
+        "hint": "拿大哥大电话有用吗？",
+        "text": "",
+        "startFrame": 41,
+        "endFrame": 58
+      },
+      {
+        "id": 3,
+        "hint": "跟着这些大佬",
+        "text": "",
+        "startFrame": 80,
+        "endFrame": 96
+      },
+      {
+        "id": 4,
+        "hint": "吔屎啦你",
+        "text": "",
+        "startFrame": 130,
+        "endFrame": 143
+      }
+    ]
   }
 ]
