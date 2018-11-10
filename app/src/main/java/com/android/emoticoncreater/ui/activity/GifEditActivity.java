@@ -103,7 +103,6 @@ public class GifEditActivity extends BaseActivity {
         super.initView(savedInstanceState);
 
         setToolbarBackEnable();
-        setToolbarSubTitle("编辑对应的文字");
 
         llContent = findViewById(R.id.ll_content);
         ivGif = findViewById(R.id.iv_gif);

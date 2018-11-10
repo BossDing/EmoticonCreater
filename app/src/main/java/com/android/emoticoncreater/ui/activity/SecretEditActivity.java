@@ -53,7 +53,6 @@ public class SecretEditActivity extends BaseActivity {
 
         setToolbarBackEnable();
         setToolbarTitle("添加秘密");
-        setToolbarSubTitle("编写你的秘密");
 
         ivPicture = (AppCompatImageView) findViewById(R.id.iv_picture);
         etTitle = (AppCompatEditText) findViewById(R.id.et_title);

@@ -51,7 +51,6 @@ public class SecretListActivity extends BaseActivity {
 
         setToolbarBackEnable();
         setToolbarTitle("秘密表情包");
-        setToolbarSubTitle("选择一个秘密表情");
 
         rvSecretList = findViewById(R.id.rv_secret_list);
         rvSecretList.setLayoutManager(new LinearLayoutManager(this));

@@ -79,7 +79,6 @@ public class OneEmoticonEditActivity extends BaseActivity {
 
         setToolbarBackEnable();
         setToolbarTitle("编辑表情");
-        setToolbarSubTitle("编写表情的文字");
 
         ivPicture = findViewById(R.id.iv_picture);
         etTitle = findViewById(R.id.et_title);
