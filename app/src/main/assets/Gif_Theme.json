@@ -192,5 +192,43 @@
         "endFrame": 143
       }
     ]
+  },
+  {
+    "id": 5,
+    "name": "谁要反对",
+    "fileName": "img_shuifandui.gif",
+    "textSize": 26,
+    "maxLength": 14,
+    "duration": 150,
+    "textList": [
+      {
+        "id": 1,
+        "hint": "好，我真的讲完了",
+        "text": "",
+        "startFrame": 1,
+        "endFrame": 20
+      },
+      {
+        "id": 2,
+        "hint": "谁赞成",
+        "text": "",
+        "startFrame": 28,
+        "endFrame": 40
+      },
+      {
+        "id": 3,
+        "hint": "谁反对",
+        "text": "",
+        "startFrame": 44,
+        "endFrame": 55
+      },
+      {
+        "id": 4,
+        "hint": "我反对",
+        "text": "",
+        "startFrame": 58,
+        "endFrame": 67
+      }
+    ]
   }
 ]
