@@ -5,7 +5,7 @@
     "fileName": "img_weisuoyuwei.gif",
     "textSize": 24,
     "maxLength": 14,
-    "duration": 200,
+    "duration": 150,
     "textList": [
       {
         "id": 1,
@@ -116,7 +116,7 @@
     "fileName": "ic_qiegewala.gif",
     "textSize": 24,
     "maxLength": 14,
-    "duration": 150,
+    "duration": 100,
     "textList": [
       {
         "id": 1,
@@ -161,7 +161,7 @@
     "fileName": "img_yeshilani.gif",
     "textSize": 28,
     "maxLength": 14,
-    "duration": 150,
+    "duration": 100,
     "textList": [
       {
         "id": 1,
@@ -199,7 +199,7 @@
     "fileName": "img_shuifandui.gif",
     "textSize": 26,
     "maxLength": 14,
-    "duration": 150,
+    "duration": 100,
     "textList": [
       {
         "id": 1,
