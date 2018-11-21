@@ -91,10 +91,12 @@ public class PermissionsHelper {
     }
 
     private void showTipsDialog(final Activity activity) {
+        final AlertDialogFragment tipsDialog = new AlertDialogFragment();
+
         final DialogInterface.OnClickListener dialogClick = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                tipsDialog.dismissAllowingStateLoss();
                 if (DialogInterface.BUTTON_POSITIVE == which) {
                     AppManager.showInstalledAppDetails(activity, activity.getPackageName(), REQUEST_TO_SETTING);
                 } else if (DialogInterface.BUTTON_NEGATIVE == which) {
@@ -103,16 +105,15 @@ public class PermissionsHelper {
             }
         };
 
-        final AlertDialogFragment dialog = new AlertDialogFragment();
-        dialog.setCancelable(false);
-        dialog.setTitle("权限申请");
-        dialog.setConfirmButton("去设置", dialogClick);
-        dialog.setCancelButton("取消", dialogClick);
-        dialog.setMessage(errorTipsList.get(mPosition));
+        tipsDialog.setCancelable(false);
+        tipsDialog.setTitle("权限申请");
+        tipsDialog.setConfirmButton("去设置", dialogClick);
+        tipsDialog.setCancelButton("取消", dialogClick);
+        tipsDialog.setMessage(errorTipsList.get(mPosition));
 
         if (activity instanceof AppCompatActivity) {
             final AppCompatActivity appCompatActivity = (AppCompatActivity) activity;
-            dialog.show(appCompatActivity.getSupportFragmentManager(), "PermissionTipsDialog");
+            tipsDialog.show(appCompatActivity.getSupportFragmentManager(), "PermissionTipsDialog");
         } else {
             if (mPermissionsResult != null) mPermissionsResult.cancelToSettings();
         }

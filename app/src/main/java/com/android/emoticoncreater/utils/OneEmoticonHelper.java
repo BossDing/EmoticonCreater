@@ -25,6 +25,8 @@ public class OneEmoticonHelper {
 
     private static final int TEXT_PADDING = 20;//文字内边距
     private static final int PICTURE_PADDING = 20;//图片内边距
+
+    private static final int PADDING = 20;//内边距
     private static final int PICTURE_WIDTH = 300;//图片宽度
     private static final int BACKGROUND_COLOR = 0xffffffff;
     private static final int TEXT_COLOR = 0xff010101;
@@ -67,8 +69,9 @@ public class OneEmoticonHelper {
         final StaticLayout currentLayout = new StaticLayout(text, textPaint, pictureWidth,
                 Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
 
-        final int totalWidth = PICTURE_PADDING + pictureWidth + PICTURE_PADDING;
-        final int totalHeight = PICTURE_PADDING + pictureHeight + TEXT_PADDING + currentLayout.getHeight() + TEXT_PADDING;
+        final int textHeight = TextUtils.isEmpty(text) ? 0 : currentLayout.getHeight() + PADDING;
+        final int totalWidth = PADDING + pictureWidth + PADDING;
+        final int totalHeight = PADDING + pictureHeight + PADDING + textHeight;
 
         final Bitmap background = Bitmap.createBitmap(totalWidth, totalHeight, config);
         final Rect backgroundRect = new Rect(0, 0, totalWidth, totalHeight);
@@ -77,11 +80,11 @@ public class OneEmoticonHelper {
         canvas.drawRect(backgroundRect, backgroundPaint);
 
         final Rect pictureRect = new Rect(0, 0, pictureWidth, pictureHeight);
-        final RectF dst = new RectF(PICTURE_PADDING, PICTURE_PADDING, pictureWidth + PICTURE_PADDING, PICTURE_PADDING + pictureHeight);
+        final RectF dst = new RectF(PADDING, PADDING, pictureWidth + PADDING, PADDING + pictureHeight);
         canvas.drawBitmap(bitmap, pictureRect, dst, null);
         bitmap.recycle();
 
-        canvas.translate(totalWidth / 2, PICTURE_PADDING + pictureHeight + TEXT_PADDING);
+        canvas.translate(totalWidth / 2, PADDING + pictureHeight + PADDING);
         currentLayout.draw(canvas);
 
         final String imageName = System.currentTimeMillis() + ".jpg";
