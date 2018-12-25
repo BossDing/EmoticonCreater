@@ -26,9 +26,14 @@ public class AllWickedHelper {
     private static final int FIRST_PICUTRE = R.raw.img_all_wicked1;
     private static final int FIRST_PICUTRE_HEIGHT = 318;
 
-    private static final int SECOND_CLOTHES_TEXT_CENTER = 116;
-    private static final int SECOND_CLOTHES_TEXT_TOP = 130;
-    private static final int SECOND_PICUTRE = R.raw.img_all_wicked2;
+    private static final int SECOND_LEFT_CLOTHES_TEXT_CENTER = 116;
+    private static final int SECOND_LEFT_CLOTHES_TEXT_TOP = 130;
+    private static final int SECOND_LEFT_PICUTRE = R.raw.img_all_wicked2_left;
+
+    private static final int SECOND_RIGHT_CLOTHES_TEXT_CENTER = 385;
+    private static final int SECOND_RIGHT_CLOTHES_TEXT_TOP = 130;
+    private static final int SECOND_RIGHT_PICUTRE = R.raw.img_all_wicked2_right;
+
     private static final int SECOND_PICUTRE_HEIGHT = 446;
 
     private static final int THIRD_CLOTHES_TEXT_CENTER = 451;
@@ -63,6 +68,7 @@ public class AllWickedHelper {
     private final String mBReplyText;//B的回答
     private final String mSavePath;
     private final Typeface mTypeFace;
+    private final boolean isRight;
 
     private AllWickedHelper(Builder builder) {
         mResources = builder.resources;
@@ -74,6 +80,7 @@ public class AllWickedHelper {
         mBReplyText = builder.bReplyText;
         mSavePath = builder.savePath;
         mTypeFace = builder.typeFace;
+        isRight = builder.isRight;
     }
 
     public File create() {
@@ -102,7 +109,11 @@ public class AllWickedHelper {
         final TextPaint clothesTextPaint = createTextPaint(mTypeFace, CLOTHES_TEXT_SIZE, CLOTHES_TEXT_COLOR);
 
         drawFirstPart(canvas, descriptionLayout, clothesTextPaint);
-        drawSecondPart(canvas, clothesTextPaint);
+        if (isRight) {
+            drawSecondRightPart(canvas, clothesTextPaint);
+        } else {
+            drawSecondLeftPart(canvas, clothesTextPaint);
+        }
         drawThirdPart(canvas, aAskLayout);
         drawForthPart(canvas, bReplyLayout, clothesTextPaint);
 
@@ -128,16 +139,28 @@ public class AllWickedHelper {
         canvas.translate(-FIRST_CLOTHES_TEXT_CENTER, -FIRST_CLOTHES_TEXT_TOP);
     }
 
-    private void drawSecondPart(Canvas canvas, TextPaint clothesTextPaint) {
+    private void drawSecondLeftPart(Canvas canvas, TextPaint clothesTextPaint) {
         canvas.translate(0, FIRST_PICUTRE_HEIGHT + PADDING);
-        drawBitmap(mResources, canvas, SECOND_PICUTRE);
+        drawBitmap(mResources, canvas, SECOND_LEFT_PICUTRE);
 
         final StaticLayout clothesWordLayout = new StaticLayout(mBClothesWord, clothesTextPaint, CLOTHES_WORD_WIDTH,
                 Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
 
-        canvas.translate(SECOND_CLOTHES_TEXT_CENTER, SECOND_CLOTHES_TEXT_TOP);
+        canvas.translate(SECOND_LEFT_CLOTHES_TEXT_CENTER, SECOND_LEFT_CLOTHES_TEXT_TOP);
         clothesWordLayout.draw(canvas);
-        canvas.translate(-SECOND_CLOTHES_TEXT_CENTER, -SECOND_CLOTHES_TEXT_TOP);
+        canvas.translate(-SECOND_LEFT_CLOTHES_TEXT_CENTER, -SECOND_LEFT_CLOTHES_TEXT_TOP);
+    }
+
+    private void drawSecondRightPart(Canvas canvas, TextPaint clothesTextPaint) {
+        canvas.translate(0, FIRST_PICUTRE_HEIGHT + PADDING);
+        drawBitmap(mResources, canvas, SECOND_RIGHT_PICUTRE);
+
+        final StaticLayout clothesWordLayout = new StaticLayout(mBClothesWord, clothesTextPaint, CLOTHES_WORD_WIDTH,
+                Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false);
+
+        canvas.translate(SECOND_RIGHT_CLOTHES_TEXT_CENTER, SECOND_RIGHT_CLOTHES_TEXT_TOP);
+        clothesWordLayout.draw(canvas);
+        canvas.translate(-SECOND_RIGHT_CLOTHES_TEXT_CENTER, -SECOND_RIGHT_CLOTHES_TEXT_TOP);
     }
 
     private void drawThirdPart(Canvas canvas, StaticLayout aAskLayout) {
@@ -233,6 +256,7 @@ public class AllWickedHelper {
         private String bReplyText;
         private String savePath;
         private Typeface typeFace;
+        private boolean isRight = false;
 
         public Builder(Resources resources) {
             this.resources = resources;
@@ -275,6 +299,11 @@ public class AllWickedHelper {
 
         public Builder typeFace(Typeface typeFace) {
             this.typeFace = typeFace;
+            return this;
+        }
+
+        public Builder isRight(boolean isRight) {
+            this.isRight = isRight;
             return this;
         }
 

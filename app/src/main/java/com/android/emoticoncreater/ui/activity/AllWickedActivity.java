@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.android.emoticoncreater.R;
@@ -20,11 +21,14 @@ import com.android.emoticoncreater.utils.ThreadPoolUtil;
 
 import java.io.File;
 
+import androidx.appcompat.widget.SwitchCompat;
+
 public class AllWickedActivity extends BaseActivity {
 
     private EditText etDescritption;
     private EditText etAClothesText;
     private EditText etBClothesWord;
+    private SwitchCompat swDirection;
     private EditText etAAsk;
     private EditText etBReply;
     private EditText etBClothesText;
@@ -60,9 +64,13 @@ public class AllWickedActivity extends BaseActivity {
         etDescritption = findViewById(R.id.et_descritption);
         etAClothesText = findViewById(R.id.et_a_clothes_text);
         etBClothesWord = findViewById(R.id.et_b_clothes_word);
+        swDirection = findViewById(R.id.sw_direction);
         etAAsk = findViewById(R.id.et_a_ask);
         etBReply = findViewById(R.id.et_b_reply);
         etBClothesText = findViewById(R.id.et_b_clothes_text);
+
+        swDirection.setOnCheckedChangeListener(mDirectionChange);
+        swDirection.setChecked(true);
     }
 
     @Override
@@ -93,6 +101,7 @@ public class AllWickedActivity extends BaseActivity {
                 String aAsk = etAAsk.getText().toString();
                 String bReply = etBReply.getText().toString();
                 String bClothesText = etBClothesText.getText().toString();
+                final boolean isRight = swDirection.isChecked();
 
                 if (TextUtils.isEmpty(description)) {
                     description = etDescritption.getHint().toString();
@@ -123,6 +132,7 @@ public class AllWickedActivity extends BaseActivity {
                         .bClothesText(bClothesText)
                         .savePath(mSavePath)
                         .typeFace(typeface)
+                        .isRight(isRight)
                         .bulid();
 
                 final File imageFile = helper.create();
@@ -146,4 +156,11 @@ public class AllWickedActivity extends BaseActivity {
             }
         });
     }
+
+    private CompoundButton.OnCheckedChangeListener mDirectionChange = new CompoundButton.OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            etBClothesWord.setHint(isChecked ? "酷" : "佬");
+        }
+    };
 }
