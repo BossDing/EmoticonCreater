@@ -38,6 +38,8 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
             pictures = ImageDataHelper.XIONG_MAO_REN_LIST;
         } else if ("滑稽".equals(title)) {
             pictures = ImageDataHelper.HUA_JI_LIST;
+        } else if ("小坏坏".equals(title)) {
+            pictures = ImageDataHelper.XIAO_HUAI_HUAI_LISt;
         } else {
             pictures = ImageDataHelper.MO_GU_TOU_LIST;
         }
