@@ -21,7 +21,7 @@ public class ImageDataHelper {
     };
 
     public static final String[] EMOTICON_TITLES = {
-            "蘑菇头", "熊猫人", "小坏坏", "滑稽"
+            "蘑菇头", "熊猫人", "小坏坏", "小仓鼠", "红脸蛋", "滑稽"
     };
 
     public static final int[] MO_GU_TOU_LIST = {
@@ -101,7 +101,25 @@ public class ImageDataHelper {
             R.raw.img_xiaohuaihuai13, R.raw.img_xiaohuaihuai14, R.raw.img_xiaohuaihuai15,
             R.raw.img_xiaohuaihuai16, R.raw.img_xiaohuaihuai17, R.raw.img_xiaohuaihuai18,
             R.raw.img_xiaohuaihuai19, R.raw.img_xiaohuaihuai20, R.raw.img_xiaohuaihuai21,
-            R.raw.img_xiaohuaihuai22, R.raw.img_xiaohuaihuai23, R.raw.img_xiaohuaihuai24
+            R.raw.img_xiaohuaihuai22, R.raw.img_xiaohuaihuai23, R.raw.img_xiaohuaihuai24,
+            R.raw.img_xiaohuaihuai25
+    };
+    public static final int[] XIAO_CANG_SHU_LIST = {
+            R.raw.img_xiaocangshu1, R.raw.img_xiaocangshu2, R.raw.img_xiaocangshu3,
+            R.raw.img_xiaocangshu4, R.raw.img_xiaocangshu5, R.raw.img_xiaocangshu6,
+            R.raw.img_xiaocangshu7, R.raw.img_xiaocangshu8, R.raw.img_xiaocangshu9,
+            R.raw.img_xiaocangshu10, R.raw.img_xiaocangshu11, R.raw.img_xiaocangshu12,
+            R.raw.img_xiaocangshu13
+    };
+    public static final int[] HONG_LIAN_DAN_LIST = {
+            R.raw.img_hongliandan1, R.raw.img_hongliandan2, R.raw.img_hongliandan3,
+            R.raw.img_hongliandan4, R.raw.img_hongliandan5, R.raw.img_hongliandan6,
+            R.raw.img_hongliandan7, R.raw.img_hongliandan8, R.raw.img_hongliandan9,
+            R.raw.img_hongliandan10, R.raw.img_hongliandan11, R.raw.img_hongliandan12,
+            R.raw.img_hongliandan13, R.raw.img_hongliandan14, R.raw.img_hongliandan15,
+            R.raw.img_hongliandan16, R.raw.img_hongliandan17, R.raw.img_hongliandan18,
+            R.raw.img_hongliandan19, R.raw.img_hongliandan20, R.raw.img_hongliandan21,
+            R.raw.img_hongliandan22
     };
     public static final int[] HUA_JI_LIST = {
             R.raw.img_huaji1, R.raw.img_huaji2, R.raw.img_huaji3,
