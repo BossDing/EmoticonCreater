@@ -17,6 +17,10 @@ public class Constants {
     public static final String PATH_GIF = PATH_BASE + "GIF" + File.separator;
     public static final String PATH_MATURE = PATH_BASE + "你已经很成熟了" + File.separator;
     public static final String PATH_ALL_WICKED = PATH_BASE + "全员恶人" + File.separator;
+    public static final String PATH_DONATE = PATH_BASE + "捐赠" + File.separator;
+
+    public static final String NAME_ALIPAY = "支付宝捐赠二维码.jpg";
+    public static final String NAME_WECHAT = "微信捐赠二维码.jpg";
 
     public static final String KEY_RETURN_DATA = "key_return_data";//ActivityResult
 

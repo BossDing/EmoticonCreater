@@ -2,6 +2,8 @@ package com.android.emoticoncreater.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.android.emoticoncreater.R;
 import com.android.emoticoncreater.app.BaseActivity;
@@ -67,6 +69,23 @@ public class MainActivity extends BaseActivity {
         if (!FileUtils.createdirectory(basePath)) {
             showSnackbar("创建存储目录失败");
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        hideKeyboard();
+        int id = item.getItemId();
+        if (id == R.id.action_donate) {
+            DonateActivity.show(this);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
