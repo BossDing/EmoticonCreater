@@ -21,7 +21,7 @@ public class ImageDataHelper {
     };
 
     public static final String[] EMOTICON_TITLES = {
-            "蘑菇头", "熊猫人", "小坏坏", "小仓鼠", "红脸蛋", "滑稽"
+            "蘑菇头", "熊猫人", "小坏坏", "猥琐萌", "小仓鼠", "红脸蛋", "滑稽"
     };
 
     public static final int[] MO_GU_TOU_LIST = {
@@ -56,7 +56,8 @@ public class ImageDataHelper {
             R.raw.img_mogutou85, R.raw.img_mogutou86, R.raw.img_mogutou87,
             R.raw.img_mogutou88, R.raw.img_mogutou89, R.raw.img_mogutou90,
             R.raw.img_mogutou91, R.raw.img_mogutou92, R.raw.img_mogutou93,
-            R.raw.img_mogutou94, R.raw.img_mogutou95, R.raw.img_mogutou96
+            R.raw.img_mogutou94, R.raw.img_mogutou95, R.raw.img_mogutou96,
+            R.raw.img_mogutou97, R.raw.img_mogutou98
     };
     public static final int[] XIONG_MAO_REN_LIST = {
             R.raw.img_xiongmaoren1, R.raw.img_xiongmaoren2, R.raw.img_xiongmaoren3,
@@ -93,7 +94,7 @@ public class ImageDataHelper {
             R.raw.img_xiongmaoren94, R.raw.img_xiongmaoren95, R.raw.img_xiongmaoren96
     };
 
-    public static final int[] XIAO_HUAI_HUAI_LISt = {
+    public static final int[] XIAO_HUAI_HUAI_LIST = {
             R.raw.img_xiaohuaihuai1, R.raw.img_xiaohuaihuai2, R.raw.img_xiaohuaihuai3,
             R.raw.img_xiaohuaihuai4, R.raw.img_xiaohuaihuai5, R.raw.img_xiaohuaihuai6,
             R.raw.img_xiaohuaihuai7, R.raw.img_xiaohuaihuai8, R.raw.img_xiaohuaihuai9,
@@ -104,12 +105,31 @@ public class ImageDataHelper {
             R.raw.img_xiaohuaihuai22, R.raw.img_xiaohuaihuai23, R.raw.img_xiaohuaihuai24,
             R.raw.img_xiaohuaihuai25
     };
+    public static final int[] WEI_SUO_MENG_LIST = {
+            R.raw.img_weisuomeng1, R.raw.img_weisuomeng2, R.raw.img_weisuomeng3,
+            R.raw.img_weisuomeng4, R.raw.img_weisuomeng5, R.raw.img_weisuomeng6,
+            R.raw.img_weisuomeng7, R.raw.img_weisuomeng8, R.raw.img_weisuomeng9,
+            R.raw.img_weisuomeng10, R.raw.img_weisuomeng11, R.raw.img_weisuomeng12,
+            R.raw.img_weisuomeng13, R.raw.img_weisuomeng14, R.raw.img_weisuomeng15,
+            R.raw.img_weisuomeng16, R.raw.img_weisuomeng17, R.raw.img_weisuomeng18,
+            R.raw.img_weisuomeng19, R.raw.img_weisuomeng20, R.raw.img_weisuomeng21,
+            R.raw.img_weisuomeng22, R.raw.img_weisuomeng23, R.raw.img_weisuomeng24,
+            R.raw.img_weisuomeng25, R.raw.img_weisuomeng26, R.raw.img_weisuomeng27,
+            R.raw.img_weisuomeng28, R.raw.img_weisuomeng29, R.raw.img_weisuomeng30,
+            R.raw.img_weisuomeng31, R.raw.img_weisuomeng32, R.raw.img_weisuomeng33,
+            R.raw.img_weisuomeng34, R.raw.img_weisuomeng35, R.raw.img_weisuomeng36,
+            R.raw.img_weisuomeng37, R.raw.img_weisuomeng38, R.raw.img_weisuomeng39
+    };
     public static final int[] XIAO_CANG_SHU_LIST = {
             R.raw.img_xiaocangshu1, R.raw.img_xiaocangshu2, R.raw.img_xiaocangshu3,
             R.raw.img_xiaocangshu4, R.raw.img_xiaocangshu5, R.raw.img_xiaocangshu6,
             R.raw.img_xiaocangshu7, R.raw.img_xiaocangshu8, R.raw.img_xiaocangshu9,
             R.raw.img_xiaocangshu10, R.raw.img_xiaocangshu11, R.raw.img_xiaocangshu12,
-            R.raw.img_xiaocangshu13
+            R.raw.img_xiaocangshu13, R.raw.img_xiaocangshu14, R.raw.img_xiaocangshu15,
+            R.raw.img_xiaocangshu16, R.raw.img_xiaocangshu17, R.raw.img_xiaocangshu18,
+            R.raw.img_xiaocangshu19, R.raw.img_xiaocangshu20, R.raw.img_xiaocangshu21,
+            R.raw.img_xiaocangshu22, R.raw.img_xiaocangshu23, R.raw.img_xiaocangshu24,
+            R.raw.img_xiaocangshu25
     };
     public static final int[] HONG_LIAN_DAN_LIST = {
             R.raw.img_hongliandan1, R.raw.img_hongliandan2, R.raw.img_hongliandan3,

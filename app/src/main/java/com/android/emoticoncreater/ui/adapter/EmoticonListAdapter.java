@@ -39,7 +39,9 @@ public class EmoticonListAdapter extends RecyclerView.Adapter {
         } else if ("滑稽".equals(title)) {
             pictures = ImageDataHelper.HUA_JI_LIST;
         } else if ("小坏坏".equals(title)) {
-            pictures = ImageDataHelper.XIAO_HUAI_HUAI_LISt;
+            pictures = ImageDataHelper.XIAO_HUAI_HUAI_LIST;
+        } else if ("猥琐萌".equals(title)) {
+            pictures = ImageDataHelper.WEI_SUO_MENG_LIST;
         } else if ("小仓鼠".equals(title)) {
             pictures = ImageDataHelper.XIAO_CANG_SHU_LIST;
         } else if ("红脸蛋".equals(title)) {
